@@ -1,7 +1,8 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { Mail, Instagram, Twitter } from "lucide-react";
+import { Mail, Instagram } from "lucide-react";
 import Link from "next/link";
+import { TikTokIcon, TumblrIcon } from "@/components/icons";
 
 export default function ContactPage() {
   return (
@@ -28,10 +29,16 @@ export default function ContactPage() {
                             <span className="sr-only">Instagram</span>
                         </Button>
                     </Link>
-                    <Link href="#" target="_blank" rel="noopener noreferrer">
+                     <Link href="#" target="_blank" rel="noopener noreferrer">
                         <Button variant="outline" size="icon" className="w-16 h-16 rounded-full border-2 hover:border-primary hover:text-primary transition-colors duration-300">
-                            <Twitter className="h-8 w-8" />
-                            <span className="sr-only">Twitter/X</span>
+                            <TikTokIcon className="h-8 w-8" />
+                            <span className="sr-only">TikTok</span>
+                        </Button>
+                    </Link>
+                     <Link href="#" target="_blank" rel="noopener noreferrer">
+                        <Button variant="outline" size="icon" className="w-16 h-16 rounded-full border-2 hover:border-primary hover:text-primary transition-colors duration-300">
+                            <TumblrIcon className="h-8 w-8" />
+                            <span className="sr-only">Tumblr</span>
                         </Button>
                     </Link>
                 </div>

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Instagram, Twitter } from "lucide-react";
+import { LinktreeIcon } from "@/components/icons";
 import { Button } from "@/components/ui/button";
 
 export function Footer() {
@@ -12,14 +12,8 @@ export function Footer() {
         <div className="flex items-center gap-2">
           <Link href="#" target="_blank" rel="noopener noreferrer">
             <Button variant="ghost" size="icon">
-              <Twitter className="h-5 w-5" />
-              <span className="sr-only">Twitter/X</span>
-            </Button>
-          </Link>
-          <Link href="#" target="_blank" rel="noopener noreferrer">
-            <Button variant="ghost" size="icon">
-              <Instagram className="h-5 w-5" />
-              <span className="sr-only">Instagram</span>
+              <LinktreeIcon className="h-5 w-5" />
+              <span className="sr-only">Linktree</span>
             </Button>
           </Link>
         </div>
