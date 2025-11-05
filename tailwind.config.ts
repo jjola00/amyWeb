@@ -97,18 +97,18 @@ export default {
         },
         'infinite-scroll': {
             '0%': { transform: 'translateX(0)' },
-            '100%': { transform: 'translateX(-50%)' },
+            '100%': { transform: 'translateX(-33.333%)' },
         },
         'infinite-scroll-reverse': {
-            '0%': { transform: 'translateX(-50%)' },
+            '0%': { transform: 'translateX(-33.333%)' },
             '100%': { transform: 'translateX(0)' },
         },
       },
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
-        'infinite-scroll': 'infinite-scroll 40s linear infinite',
-        'infinite-scroll-reverse': 'infinite-scroll-reverse 40s linear infinite',
+        'infinite-scroll': 'infinite-scroll 120s linear infinite',
+        'infinite-scroll-reverse': 'infinite-scroll-reverse 120s linear infinite',
       },
     },
   },

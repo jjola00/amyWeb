@@ -19,55 +19,70 @@ export function InfiniteScroller({ items, direction = 'left' }: InfiniteScroller
     useEffect(() => {
         const scroller = scrollerRef.current;
         if (scroller) {
-            const scrollerContent = Array.from(scroller.children);
-            scrollerContent.forEach(item => {
-                const duplicatedItem = item.cloneNode(true);
-                (duplicatedItem as HTMLElement).setAttribute("aria-hidden", "true");
-                scroller.appendChild(duplicatedItem);
-            });
+            // Clear previous content before adding new items
+            const scrollerInner = scroller.querySelector('.scroller-inner');
+            if (scrollerInner) {
+                scrollerInner.innerHTML = ''; // Clear existing items to prevent duplication on HMR
+                
+                const allItems = [...items, ...items, ...items]; // Make the list long enough for smooth scrolling
+                
+                allItems.forEach((item, index) => {
+                    const link = document.createElement('a');
+                    link.href = "#";
+                    link.className = "group w-64 mx-4";
+                    link.target = "_blank";
+                    link.rel = "noopener noreferrer";
+
+                    const divOuter = document.createElement('div');
+                    divOuter.className = "relative overflow-hidden rounded-lg shadow-lg border border-border/40 transition-all duration-300 group-hover:shadow-primary/20 group-hover:border-primary group-hover:-translate-y-2";
+
+                    const image = document.createElement('img');
+                    image.src = item.imageUrl;
+                    image.alt = item.name;
+                    image.width = 300;
+                    image.height = 300;
+                    image.className = "w-full h-64 object-cover bg-muted";
+                    image.setAttribute('data-ai-hint', item.imageHint);
+
+                    const badge = document.createElement('div');
+                    badge.className = cn(
+                        "absolute top-2 right-2 flex items-center gap-1.5",
+                        "inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold",
+                        item.store === 'Etsy' ? 'bg-[#F1641E] hover:bg-[#F1641E]/90' : 'bg-[#E61B23] hover:bg-[#E61B23]/90',
+                        'text-white'
+                    );
+                    badge.innerHTML = `${item.store === 'Etsy' ? '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4"><path d="M10.233 18.425c-.27-.03-.53-.08-.78-.14a.27.27 0 01-.22-.32c.07-.3.12-.61.16-.92.09-.59.16-1.18.15-1.77-.01-.68-.09-1.36-.21-2.03-.18-1-.48-1.99-.89-2.94-.32-.73-.7-1.45-1.15-2.12-.27-.47-.5-1.15-.67-1.88-.1-.41-.17-.82-.2-1.24a.27.27 0 01.29-.29c.35.01.7.01 1.05.02.43 0 .86.03 1.28.1.33.05.6.15.8.4.24.3.3.68.28 1.06-.03.54-.11 1.08-.24 1.6-.13.54-.3.1.07-.46.85-1.28.32-2.83-1.04-3.44-1.27-.58-2.73-.25-3.66.9-1.12 1.38-.9 3.23.1 4.63.19.26.4.5.6.75.21.26.42.52.62.79.3.4.58.82.84 1.26.23.38.44.78.62 1.19.2.46.36.94.48 1.43.13.5.21 1 .23 1.5.02.58-.03 1.16-.16 1.73-.08.35.03.62.33.7.34.09.68.14 1.03.17a.27.27 0 01.27.29c-.01.35-.01.7-.02 1.05a.27.27 0 01-.3.26zM17.433 11.225c.34-1.03.18-2.1-.48-3.02-.85-1.19-2.2-1.68-3.56-1.3-1.55.43-2.61 1.78-2.68 3.35-.05 1.17.38 2.27 1.22 3.06.4.38.85.67 1.35.88.58.24 1.2.39 1.83.43.6.03 1.2-.02 1.79-.17.27-.07.44-.31.39-.59-.05-.29-.31-.47-.6-.41-.47.1-.96.14-1.44.11-.5-.03-1-.15-1.46-.39-.4-.2-.76-.48-1.06-.82-.57-.65-.82-1.49-.69-2.35.12-.8.59-1.47 1.29-1.9.9-.55 2-.45 2.8.25.3.25.53.58.68.95.23.59.25 1.22.1 1.82-.07.28.08.56.37.64.28.07.56-.08.64-.37z"></path></svg>' : '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4"><path d="M12.42 10.53a.35.35 0 00.35-.35V8.55a.35.35 0 00-.35-.35h-.85a.35.35 0 00-.35.35v1.63c0 .19.16.35.35.35h.85zm-2.12 0a.35.35 0 00.35-.35V8.55a.35.35 0 00-.35-.35h-.85a.35.35 0 00-.35.35v1.63c0 .19.16.35.35.35h.85zm5.1 2.53c0 .1-.04.2-.1.27l-.63.63a.35.35 0 01-.5 0l-.63-.63a.38.38 0 01-.1-.27v-1.6h2.95v1.6zm-11.45-5.91A8.78 8.78 0 0112 3.25a8.78 8.78 0 018.75 8.75 8.78 8.78 0 01-8.75 8.75A8.78 8.78 0 013.25 12c0-2.3.93-4.4 2.45-5.93zM12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm3.8 11.15v-1.6c0-.2-.15-.35-.35-.35h-2.95v-1.6c0-.2-.16-.35-.35-.35h-1.7c-.2 0-.35.16-.35.35v1.6H5.2c-.2 0-.35.15-.35.35v1.6c0 .2.15.35.35.35h2.95v1.6c0 .54.44.98.98.98h1.7c.54 0 .98-.44.98-.98v-1.6h2.95c.2 0 .35-.15.35-.35z"></path></svg>'} ${item.store}`;
+
+                    const gradientDiv = document.createElement('div');
+                    gradientDiv.className = "absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent";
+
+                    const textDiv = document.createElement('div');
+                    textDiv.className = "absolute bottom-0 left-0 p-4";
+
+                    const h3 = document.createElement('h3');
+                    h3.className = "text-lg font-headline text-white";
+                    h3.textContent = item.name;
+
+                    textDiv.appendChild(h3);
+                    divOuter.appendChild(image);
+                    divOuter.appendChild(badge);
+                    divOuter.appendChild(gradientDiv);
+                    divOuter.appendChild(textDiv);
+                    link.appendChild(divOuter);
+                    
+                    scrollerInner.appendChild(link);
+                });
+            }
         }
     }, [items]);
-
-    const getStoreIcon = (store: 'Etsy' | 'Redbubble') => {
-        if (store === 'Etsy') return <EtsyIcon className="w-4 h-4" />;
-        if (store === 'Redbubble') return <RedbubbleIcon className="w-4 h-4" />;
-        return null;
-    };
 
     return (
         <div className="w-full overflow-hidden" ref={scrollerRef}>
             <div className={cn(
-                "flex w-max hover:[animation-play-state:paused]",
+                "scroller-inner flex w-max hover:[animation-play-state:paused]",
                 direction === 'left' ? 'animate-infinite-scroll' : 'animate-infinite-scroll-reverse'
             )}>
-                {items.map((item) => (
-                    <Link href="#" key={item.id} className="group w-64 mx-4" target="_blank" rel="noopener noreferrer">
-                        <div className="relative overflow-hidden rounded-lg shadow-lg border border-border/40 transition-all duration-300 group-hover:shadow-primary/20 group-hover:border-primary group-hover:-translate-y-2">
-                            <Image
-                                src={item.imageUrl}
-                                alt={item.name}
-                                width={300}
-                                height={300}
-                                className="w-full h-64 object-cover bg-muted"
-                                data-ai-hint={item.imageHint}
-                            />
-                            <Badge 
-                                className={cn(
-                                    "absolute top-2 right-2 flex items-center gap-1.5",
-                                    item.store === 'Etsy' ? 'bg-[#F1641E] hover:bg-[#F1641E]/90' : 'bg-[#E61B23] hover:bg-[#E61B23]/90',
-                                    'text-white'
-                                )}
-                            >
-                                {getStoreIcon(item.store)}
-                                {item.store}
-                            </Badge>
-                            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
-                            <div className="absolute bottom-0 left-0 p-4">
-                                <h3 className="text-lg font-headline text-white">{item.name}</h3>
-                            </div>
-                        </div>
-                    </Link>
-                ))}
+              {/* Content is generated dynamically in useEffect */}
             </div>
         </div>
     );
