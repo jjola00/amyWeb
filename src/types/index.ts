@@ -10,3 +10,11 @@ export interface Artwork {
   width: number;
   height: number;
 }
+
+export interface ShopItem {
+  id: string;
+  name: string;
+  imageUrl: string;
+  imageHint: string;
+  store: 'Etsy' | 'Redbubble';
+}

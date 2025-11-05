@@ -38,13 +38,13 @@ export default function AboutPage() {
                         </CardHeader>
                         <CardContent className="p-0 mt-6 space-y-4 text-lg/relaxed">
                             <p>
-                                Hey! I&apos;m a passionate digital artist and character designer with a love for all things colorful, creepy, and cute. My work is heavily inspired by animation, video games, and the endless wonders of the natural world.
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
                             </p>
                             <p>
-                                When I&apos;m not drawing, you can usually find me at a local convention, sharing my art, meeting amazing people, and probably talking way too much about my favorite characters.
+                                Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
                             </p>
                             <blockquote className="p-4 bg-secondary rounded-lg text-secondary-foreground border-l-4 border-accent">
-                                Fun fact: I love bugs! 🐛🦋🐞 My sketchbooks are filled with them.
+                                "Lorem ipsum dolor sit amet."
                             </blockquote>
                         </CardContent>
                     </div>

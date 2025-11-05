@@ -8,14 +8,14 @@ export default function ContactPage() {
     <div className="max-w-2xl mx-auto text-center animate-fade-in">
       <h1 className="text-4xl font-headline md:text-5xl text-primary mb-8">Get In Touch</h1>
       <p className="text-lg text-muted-foreground mb-12">
-        For business inquiries, commissions, or just to say hello, feel free to reach out!
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
       </p>
       <Card>
         <CardContent className="p-8 flex flex-col items-center gap-8">
-            <Link href="mailto:hello@beetlehead.design" className="w-full max-w-sm">
+            <Link href="mailto:contact@example.com" className="w-full max-w-sm">
                 <Button size="lg" className="w-full text-lg h-14">
                     <Mail className="mr-3 h-6 w-6" />
-                    hello@beetlehead.design
+                    contact@example.com
                 </Button>
             </Link>
 
