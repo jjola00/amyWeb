@@ -8,7 +8,12 @@ import { EtsyIcon, RedbubbleIcon } from '@/components/icons';
 import type { ShopItem } from '@/types';
 import { cn } from '@/lib/utils';
 
-export function InfiniteScroller({ items }: { items: ShopItem[] }) {
+interface InfiniteScrollerProps {
+    items: ShopItem[];
+    direction?: 'left' | 'right';
+}
+
+export function InfiniteScroller({ items, direction = 'left' }: InfiniteScrollerProps) {
     const scrollerRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
@@ -31,7 +36,10 @@ export function InfiniteScroller({ items }: { items: ShopItem[] }) {
 
     return (
         <div className="w-full overflow-hidden" ref={scrollerRef}>
-            <div className="flex w-max animate-infinite-scroll hover:[animation-play-state:paused]">
+            <div className={cn(
+                "flex w-max hover:[animation-play-state:paused]",
+                direction === 'left' ? 'animate-infinite-scroll' : 'animate-infinite-scroll-reverse'
+            )}>
                 {items.map((item) => (
                     <Link href="#" key={item.id} className="group w-64 mx-4" target="_blank" rel="noopener noreferrer">
                         <div className="relative overflow-hidden rounded-lg shadow-lg border border-border/40 transition-all duration-300 group-hover:shadow-primary/20 group-hover:border-primary group-hover:-translate-y-2">
@@ -40,7 +48,7 @@ export function InfiniteScroller({ items }: { items: ShopItem[] }) {
                                 alt={item.name}
                                 width={300}
                                 height={300}
-                                className="w-full h-64 object-cover"
+                                className="w-full h-64 object-cover bg-muted"
                                 data-ai-hint={item.imageHint}
                             />
                             <Badge 
