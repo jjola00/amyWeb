@@ -11,10 +11,10 @@ export function Footer() {
         </p>
         <div className="flex items-center gap-2">
           <Link href="#" target="_blank" rel="noopener noreferrer">
-            <Button variant="ghost" size="icon">
+            <div className="w-10 h-10 rounded border border-border hover:border-primary transition-colors duration-300 flex items-center justify-center">
               <LinktreeIcon className="h-5 w-5" />
               <span className="sr-only">Linktree</span>
-            </Button>
+            </div>
           </Link>
         </div>
       </div>

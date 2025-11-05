@@ -8,7 +8,7 @@ export default function AboutPage() {
     
     return (
         <div className="max-w-4xl mx-auto animate-fade-in">
-            <h1 className="text-4xl font-headline md:text-5xl text-center text-primary mb-8">About the Artist</h1>
+            <h1 className="text-4xl font-headline md:text-5xl text-center text-primary mb-8">ABOUT</h1>
             <Card className="overflow-hidden shadow-lg border-border/60">
                 <div className="md:grid md:grid-cols-3 md:items-start">
                     <div className="md:col-span-1">

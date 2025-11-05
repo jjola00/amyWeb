@@ -8,7 +8,7 @@ import { ImageLightbox } from './image-lightbox';
 import { Card, CardContent } from '@/components/ui/card';
 import { AnimatePresence, motion } from 'framer-motion';
 
-const categories: ['All', ...ArtworkCategory[]] = ['All', 'Character Design', 'Mascots', 'Convention Work', 'Customer Photos'];
+const categories: ['All', ...ArtworkCategory[]] = ['All', 'Digital Fanart', 'Digital Original Art', 'Traditional Original Art', 'Mascot'];
 
 export function ArtworkGrid({ artworks }: { artworks: Artwork[] }) {
   const [activeFilter, setActiveFilter] = useState<typeof categories[number]>('All');

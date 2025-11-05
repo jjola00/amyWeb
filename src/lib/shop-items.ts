@@ -9,25 +9,11 @@ export const shopItems: ShopItem[] = [
     store: 'Etsy',
   },
   {
-    id: 'item-2',
-    name: 'Stickers',
-    imageUrl: 'https://placehold.co/300x300/222222/999999?text=',
-    imageHint: 'stickers',
-    store: 'Redbubble',
-  },
-  {
     id: 'item-3',
     name: 'Keychains',
     imageUrl: 'https://placehold.co/300x300/222222/999999?text=',
     imageHint: 'keychains',
     store: 'Etsy',
-  },
-  {
-    id: 'item-4',
-    name: 'Hoodies',
-    imageUrl: 'https://placehold.co/300x300/222222/999999?text=',
-    imageHint: 'hoodies',
-    store: 'Redbubble',
   },
   {
     id: 'item-5',
@@ -43,20 +29,6 @@ export const shopItems: ShopItem[] = [
     imageHint: 'enamel pins',
     store: 'Etsy',
   },
-  {
-    id: 'item-7',
-    name: 'Tote Bags',
-    imageUrl: 'https://placehold.co/300x300/222222/999999?text=',
-    imageHint: 'tote bags',
-    store: 'Redbubble',
-  },
-   {
-    id: 'item-8',
-    name: 'Phone Cases',
-    imageUrl: 'https://placehold.co/300x300/222222/999999?text=',
-    imageHint: 'phone cases',
-    store: 'Redbubble',
-  },
   // Duplicated for longer carousel
   {
     id: 'item-1-dup1',
@@ -66,25 +38,11 @@ export const shopItems: ShopItem[] = [
     store: 'Etsy',
   },
   {
-    id: 'item-2-dup1',
-    name: 'Stickers',
-    imageUrl: 'https://placehold.co/300x300/222222/999999?text=',
-    imageHint: 'stickers',
-    store: 'Redbubble',
-  },
-  {
     id: 'item-3-dup1',
     name: 'Keychains',
     imageUrl: 'https://placehold.co/300x300/222222/999999?text=',
     imageHint: 'keychains',
     store: 'Etsy',
-  },
-  {
-    id: 'item-4-dup1',
-    name: 'Hoodies',
-    imageUrl: 'https://placehold.co/300x300/222222/999999?text=',
-    imageHint: 'hoodies',
-    store: 'Redbubble',
   },
   {
     id: 'item-5-dup1',
@@ -101,20 +59,6 @@ export const shopItems: ShopItem[] = [
     store: 'Etsy',
   },
   {
-    id: 'item-7-dup1',
-    name: 'Tote Bags',
-    imageUrl: 'https://placehold.co/300x300/222222/999999?text=',
-    imageHint: 'tote bags',
-    store: 'Redbubble',
-  },
-   {
-    id: 'item-8-dup1',
-    name: 'Phone Cases',
-    imageUrl: 'https://placehold.co/300x300/222222/999999?text=',
-    imageHint: 'phone cases',
-    store: 'Redbubble',
-  },
-  {
     id: 'item-1-dup2',
     name: 'Digital Art',
     imageUrl: 'https://placehold.co/300x300/222222/999999?text=',
@@ -122,25 +66,11 @@ export const shopItems: ShopItem[] = [
     store: 'Etsy',
   },
   {
-    id: 'item-2-dup2',
-    name: 'Stickers',
-    imageUrl: 'https://placehold.co/300x300/222222/999999?text=',
-    imageHint: 'stickers',
-    store: 'Redbubble',
-  },
-  {
     id: 'item-3-dup2',
     name: 'Keychains',
     imageUrl: 'https://placehold.co/300x300/222222/999999?text=',
     imageHint: 'keychains',
     store: 'Etsy',
-  },
-  {
-    id: 'item-4-dup2',
-    name: 'Hoodies',
-    imageUrl: 'https://placehold.co/300x300/222222/999999?text=',
-    imageHint: 'hoodies',
-    store: 'Redbubble',
   },
   {
     id: 'item-5-dup2',
@@ -155,19 +85,5 @@ export const shopItems: ShopItem[] = [
     imageUrl: 'https://placehold.co/300x300/222222/999999?text=',
     imageHint: 'enamel pins',
     store: 'Etsy',
-  },
-  {
-    id: 'item-7-dup2',
-    name: 'Tote Bags',
-    imageUrl: 'https://placehold.co/300x300/222222/999999?text=',
-    imageHint: 'tote bags',
-    store: 'Redbubble',
-  },
-   {
-    id: 'item-8-dup2',
-    name: 'Phone Cases',
-    imageUrl: 'https://placehold.co/300x300/222222/999999?text=',
-    imageHint: 'phone cases',
-    store: 'Redbubble',
   },
 ];

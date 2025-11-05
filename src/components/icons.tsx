@@ -1,31 +1,48 @@
 import { SVGProps } from "react";
+import Image from "next/image";
 
-export const EtsyIcon = (props: SVGProps<SVGSVGElement>) => (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" {...props}>
-        <path d="M10.233 18.425c-.27-.03-.53-.08-.78-.14a.27.27 0 01-.22-.32c.07-.3.12-.61.16-.92.09-.59.16-1.18.15-1.77-.01-.68-.09-1.36-.21-2.03-.18-1-.48-1.99-.89-2.94-.32-.73-.7-1.45-1.15-2.12-.27-.47-.5-1.15-.67-1.88-.1-.41-.17-.82-.2-1.24a.27.27 0 01.29-.29c.35.01.7.01 1.05.02.43 0 .86.03 1.28.1.33.05.6.15.8.4.24.3.3.68.28 1.06-.03.54-.11 1.08-.24 1.6-.13.54-.3.1.07-.46.85-1.28.32-2.83-1.04-3.44-1.27-.58-2.73-.25-3.66.9-1.12 1.38-.9 3.23.1 4.63.19.26.4.5.6.75.21.26.42.52.62.79.3.4.58.82.84 1.26.23.38.44.78.62 1.19.2.46.36.94.48 1.43.13.5.21 1 .23 1.5.02.58-.03 1.16-.16 1.73-.08.35.03.62.33.7.34.09.68.14 1.03.17a.27.27 0 01.27.29c-.01.35-.01.7-.02 1.05a.27.27 0 01-.3.26zM17.433 11.225c.34-1.03.18-2.1-.48-3.02-.85-1.19-2.2-1.68-3.56-1.3-1.55.43-2.61 1.78-2.68 3.35-.05 1.17.38 2.27 1.22 3.06.4.38.85.67 1.35.88.58.24 1.2.39 1.83.43.6.03 1.2-.02 1.79-.17.27-.07.44-.31.39-.59-.05-.29-.31-.47-.6-.41-.47.1-.96.14-1.44.11-.5-.03-1-.15-1.46-.39-.4-.2-.76-.48-1.06-.82-.57-.65-.82-1.49-.69-2.35.12-.8.59-1.47 1.29-1.9.9-.55 2-.45 2.8.25.3.25.53.58.68.95.23.59.25 1.22.1 1.82-.07.28.08.56.37.64.28.07.56-.08.64-.37z" />
-    </svg>
+export const EtsyIcon = ({ className }: IconProps) => (
+    <Image
+        src="/images/etsy.png"
+        alt="Etsy"
+        width={64}
+        height={64}
+        className={`object-contain ${className}`}
+    />
 );
 
-export const RedbubbleIcon = (props: SVGProps<SVGSVGElement>) => (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" {...props}>
-        <path d="M12.42 10.53a.35.35 0 00.35-.35V8.55a.35.35 0 00-.35-.35h-.85a.35.35 0 00-.35.35v1.63c0 .19.16.35.35.35h.85zm-2.12 0a.35.35 0 00.35-.35V8.55a.35.35 0 00-.35-.35h-.85a.35.35 0 00-.35.35v1.63c0 .19.16.35.35.35h.85zm5.1 2.53c0 .1-.04.2-.1.27l-.63.63a.35.35 0 01-.5 0l-.63-.63a.38.38 0 01-.1-.27v-1.6h2.95v1.6zm-11.45-5.91A8.78 8.78 0 0112 3.25a8.78 8.78 0 018.75 8.75 8.78 8.78 0 01-8.75 8.75A8.78 8.78 0 013.25 12c0-2.3.93-4.4 2.45-5.93zM12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm3.8 11.15v-1.6c0-.2-.15-.35-.35-.35h-2.95v-1.6c0-.2-.16-.35-.35-.35h-1.7c-.2 0-.35.16-.35.35v1.6H5.2c-.2 0-.35.15-.35.35v1.6c0 .2.15.35.35.35h2.95v1.6c0 .54.44.98.98.98h1.7c.54 0 .98-.44.98-.98v-1.6h2.95c.2 0 .35-.15.35-.35z" />
-    </svg>
+
+
+interface IconProps {
+    className?: string;
+}
+
+export const LinktreeIcon = ({ className }: IconProps) => (
+    <Image
+        src="/images/linktree.webp"
+        alt="Linktree"
+        width={24}
+        height={24}
+        className={className}
+    />
 );
 
-export const LinktreeIcon = (props: SVGProps<SVGSVGElement>) => (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" {...props}>
-        <path d="M13.43,2.57a1.13,1.13,0,0,0-2.86,0L3,10.15l4.81-2.45L12,5.25l4.22,2.45,4.81,2.45Zm-7,8,6.21,3.22a.4.4,0,0,0,.7,0L19.57,10.6l-3-1.52L12,6.75,7.46,9.08Zm13.51.81-4.22-2.18L12,7.75,8.23,9.88,4,12.06l8,4.14,8-4.14Z"/>
-    </svg>
+export const TumblrIcon = ({ className }: IconProps) => (
+    <Image
+        src="/images/tumblr.png"
+        alt="Tumblr"
+        width={32}
+        height={32}
+        className={`object-contain ${className}`}
+    />
 );
 
-export const TumblrIcon = (props: SVGProps<SVGSVGElement>) => (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" {...props}>
-        <path d="M15.5,3H14V8.5A5.5,5.5,0,0,1,8.5,14H8v3.5A3.5,3.5,0,0,0,11.5,21V16H15a3,3,0,0,0,3-3V3.5A.5.5,0,0,0,15.5,3Z"/>
-    </svg>
-);
-
-export const TikTokIcon = (props: SVGProps<SVGSVGElement>) => (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" {...props}>
-        <path d="M16.6,6.42A6.31,6.31,0,0,1,12.4,10.3c0,2.16-1.72,4.22-4.8,4.22V11.2s3.15-.43,3.15-2.68A2.62,2.62,0,0,0,8.3,5.85,2.7,2.7,0,0,0,5.5,8.55V15a8,8,0,0,0,8,8,8.23,8.23,0,0,0,8.1-8.3V8.55a.14.14,0,0,1,.1-.1h0a3.84,3.84,0,0,0-3.1-2Z"/>
-    </svg>
+export const TikTokIcon = ({ className }: IconProps) => (
+    <Image
+        src="/images/tiktok.png"
+        alt="TikTok"
+        width={32}
+        height={32}
+        className={`object-contain ${className}`}
+    />
 );

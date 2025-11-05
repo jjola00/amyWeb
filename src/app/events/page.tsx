@@ -13,7 +13,7 @@ const events = [
 export default function EventsPage() {
     return (
         <div className="max-w-4xl mx-auto animate-fade-in">
-            <h1 className="text-4xl font-headline md:text-5xl text-center text-primary mb-8">Upcoming Events</h1>
+            <h1 className="text-4xl font-headline md:text-5xl text-center text-primary mb-8">EVENTS</h1>
             <p className="text-center text-lg text-muted-foreground mb-12">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
             <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
                 {events.map((event) => (

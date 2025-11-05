@@ -1,4 +1,4 @@
-export type ArtworkCategory = 'Mascots' | 'Character Design' | 'Convention Work' | 'Customer Photos';
+export type ArtworkCategory = 'Digital Fanart' | 'Digital Original Art' | 'Traditional Original Art'| 'Mascot';
 
 export interface Artwork {
   id: string;
@@ -16,5 +16,5 @@ export interface ShopItem {
   name: string;
   imageUrl: string;
   imageHint: string;
-  store: 'Etsy' | 'Redbubble';
+  store: 'Etsy';
 }
