@@ -3,6 +3,7 @@ import { shopItems } from '@/lib/shop-items';
 import { Button } from '@/components/ui/button';
 import { EtsyIcon, RedbubbleIcon } from '@/components/icons';
 import Link from 'next/link';
+import { Card } from '@/components/ui/card';
 
 export default function ShopPage() {
   // Split items for two carousels
@@ -23,24 +24,28 @@ export default function ShopPage() {
         />
       </div>
 
-      <div className="text-center max-w-2xl mx-auto space-y-8">
+      <div className="text-center max-w-3xl mx-auto space-y-8">
         <h1 className="text-4xl font-headline md:text-5xl text-primary">Shop</h1>
         <p className="text-lg text-muted-foreground">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Find my work on Etsy and Redbubble.
         </p>
-        <div className="flex justify-center gap-4">
-            <Link href="#" target="_blank" rel="noopener noreferrer">
-                <Button size="lg" className="h-14 text-lg bg-[#F1641E] hover:bg-[#F1641E]/90 text-white">
-                    <EtsyIcon className="mr-3 h-6 w-6" />
-                    Visit Etsy Shop
+        <div className="grid gap-8 md:grid-cols-2">
+            <Card className="hover:border-primary transition-colors duration-300">
+            <Link href="#" target="_blank" rel="noopener noreferrer" className="block p-4 h-full">
+                <Button variant="ghost" className="w-full h-40 text-2xl font-headline flex-col gap-4">
+                <EtsyIcon className="w-12 h-12 text-primary" />
+                <span>Etsy Store</span>
                 </Button>
             </Link>
-            <Link href="#" target="_blank" rel="noopener noreferrer">
-                <Button size="lg" className="h-14 text-lg bg-[#E61B23] hover:bg-[#E61B23]/90 text-white">
-                    <RedbubbleIcon className="mr-3 h-6 w-6" />
-                    Visit Redbubble
+            </Card>
+            <Card className="hover:border-primary transition-colors duration-300">
+            <Link href="#" target="_blank" rel="noopener noreferrer" className="block p-4 h-full">
+                <Button variant="ghost" className="w-full h-40 text-2xl font-headline flex-col gap-4">
+                <RedbubbleIcon className="w-12 h-12 text-primary" />
+                <span>Redbubble</span>
                 </Button>
             </Link>
+            </Card>
         </div>
       </div>
 
