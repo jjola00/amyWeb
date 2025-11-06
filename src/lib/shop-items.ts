@@ -15,5 +15,6 @@ export async function getShopItems(): Promise<ShopItem[]> {
 }
 
 // Legacy export for components that expect synchronous access
-// This will be replaced when components are updated to use async loading
+// DEPRECATED: Do not use `shopItems` directly. This is an empty array and will break components expecting data.
+// Please migrate to using the async `getShopItems()` function instead.
 export const shopItems: ShopItem[] = [];
