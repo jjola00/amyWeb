@@ -1,22 +1,22 @@
 # Implementation Plan
 
-- [x] 1. Set up Netlify Identity authentication for Vercel deployment
-  - Configure Netlify site for Identity service only (no hosting)
-  - Set up Git Gateway with appropriate repository permissions
-  - Configure environment variables for authentication integration
+- [ ] 1. Set up GitHub OAuth authentication for Decap CMS
+  - Configure GitHub OAuth App with appropriate repository permissions
+  - Set up OAuth redirect URLs for Vercel deployment
+  - Configure environment variables for GitHub authentication
   - _Requirements: 1.1, 1.3, 1.4_
 
 - [ ] 2. Update admin interface for Vercel compatibility
-  - [ ] 2.1 Modify admin/index.html for proper authentication flow
-    - Update Netlify Identity widget integration
+  - [ ] 2.1 Create admin/index.html for GitHub OAuth authentication
+    - Set up Decap CMS with GitHub backend configuration
     - Add proper redirect handling for Vercel domain
     - Include error handling for authentication failures
     - _Requirements: 1.1, 1.2, 1.5_
   
-  - [ ] 2.2 Enhance CMS configuration for existing content structure
-    - Update config.yml to match current JSON schema exactly
-    - Configure proper media folder paths for Vercel static serving
-    - Add validation rules for required fields
+  - [ ] 2.2 Create CMS configuration for markdown file structure
+    - Configure config.yml for individual markdown files per content item
+    - Set up proper media folder paths for Vercel static serving
+    - Add validation rules for required fields and frontmatter
     - _Requirements: 2.1, 3.1, 4.1, 5.1_
 
 - [ ] 3. Implement media management system
@@ -32,7 +32,7 @@
 
 - [ ] 4. Configure Vercel deployment integration
   - [ ] 4.1 Set up environment variables for authentication
-    - Add Netlify site ID and access tokens to Vercel environment
+    - Add GitHub OAuth client ID and secret to Vercel environment
     - Configure public URLs for authentication redirects
     - _Requirements: 6.1, 6.2_
   
@@ -66,15 +66,15 @@
     - Add contact information management
     - _Requirements: 5.1, 5.2, 5.3, 5.4_
 
-- [ ] 6. Add authentication integration to main site
-  - [ ] 6.1 Update layout.tsx for Identity widget
-    - Add Netlify Identity script to main site layout
-    - Configure authentication redirect handling
+- [ ] 6. Update content loading system for markdown files
+  - [ ] 6.1 Create hybrid content loader functions
+    - Add support for loading individual markdown files
+    - Maintain backward compatibility with existing JSON structure
     - _Requirements: 1.1, 1.2_
   
-  - [ ] 6.2 Create authentication helper utilities
-    - Add utility functions for checking authentication status
-    - Create redirect handlers for post-login flow
+  - [ ] 6.2 Add frontmatter parsing utilities
+    - Add markdown parsing with frontmatter extraction
+    - Create content aggregation functions for collections
     - _Requirements: 1.5, 6.5_
 
 - [ ] 7. Implement content validation and error handling
@@ -90,7 +90,7 @@
 
 - [ ] 9. Configure deployment and monitoring
   - [ ] 9.1 Set up Vercel deployment configuration
-    - Configure build commands and environment variables
+    - Configure build commands and GitHub OAuth environment variables
     - Set up proper static file serving for admin interface
     - _Requirements: 6.1, 6.2_
   

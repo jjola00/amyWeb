@@ -2,9 +2,9 @@
 
 ## Overview
 
-This design integrates Decap CMS into the existing Next.js artist portfolio website to enable content management through a web-based interface. The solution leverages Git Gateway for authentication and maintains compatibility with Vercel deployment while preserving the existing JSON-based content structure.
+This design integrates Decap CMS into the existing Next.js artist portfolio website to enable content management through a web-based interface. The solution uses GitHub OAuth for direct authentication and migrates from JSON collections to individual markdown files following standard CMS practices, maintaining full compatibility with Vercel deployment.
 
-The design addresses the unique challenge of deploying on Vercel (instead of Netlify) while using Netlify's Identity service for authentication, ensuring the artist can manage content independently without requiring technical knowledge.
+The design simplifies the architecture by eliminating external authentication services while providing a seamless content editing experience for the artist without requiring technical knowledge.
 
 ## Architecture
 
@@ -14,17 +14,15 @@ The design addresses the unique challenge of deploying on Vercel (instead of Net
 graph TB
     A[Artist/Content Editor] --> B[Admin Interface /admin/]
     B --> C[Decap CMS]
-    C --> D[Git Gateway]
+    C --> D[GitHub OAuth]
     D --> E[GitHub Repository]
     E --> F[Vercel Deployment]
     F --> G[Live Portfolio Website]
     
-    H[Netlify Identity] --> D
-    I[Content JSON Files] --> C
+    I[Markdown Content Files] --> C
     J[Media Files] --> K[public/images/uploads/]
     
     subgraph "Authentication Flow"
-        H
         D
     end
     
@@ -47,8 +45,8 @@ graph TB
 The system consists of several key components:
 
 1. **Admin Interface**: Static HTML page served at `/admin/` that loads Decap CMS
-2. **Authentication Layer**: Netlify Identity + Git Gateway for secure access
-3. **Content Management**: Decap CMS configuration managing JSON collections
+2. **Authentication Layer**: GitHub OAuth for direct repository access
+3. **Content Management**: Decap CMS configuration managing individual markdown files
 4. **Media Management**: File upload system storing images in `public/images/uploads/`
 5. **Deployment Integration**: Git-based workflow triggering Vercel rebuilds
 
@@ -60,7 +58,7 @@ The system consists of several key components:
 
 The admin interface serves as the entry point for content management. It includes:
 - Decap CMS script loading from CDN
-- Netlify Identity widget integration
+- GitHub OAuth integration
 - Redirect handling for post-authentication flow
 
 **Key Features**:
@@ -72,7 +70,7 @@ The admin interface serves as the entry point for content management. It include
 
 **Location**: `public/admin/config.yml`
 
-The configuration defines content collections matching the existing JSON structure:
+The configuration defines content collections stored as individual markdown files:
 
 **Collections Structure**:
 - **Gallery Collection**: Manages artwork entries with metadata
@@ -94,52 +92,49 @@ The configuration defines content collections matching the existing JSON structu
 ### 3. Authentication System
 
 **Components**:
-- **Netlify Identity**: User management and authentication
-- **Git Gateway**: Repository access without direct Git permissions
+- **GitHub OAuth**: Direct GitHub authentication and authorization
 - **Session Management**: Secure token handling and renewal
 
 **Authentication Flow**:
 1. User navigates to `/admin/`
-2. Netlify Identity widget prompts for login
+2. GitHub OAuth prompts for login
 3. Successful authentication redirects to admin interface
-4. Git Gateway provides repository access via API tokens
+4. GitHub provides direct repository access via OAuth tokens
 5. CMS operations commit directly to repository
 
 ### 4. Content Data Models
 
-The design maintains the existing JSON structure while adding CMS management capabilities:
+The design migrates from JSON to individual markdown files with frontmatter metadata:
 
-**Gallery Model**:
-```json
-{
-  "artworks": [
-    {
-      "id": "string",
-      "title": "string", 
-      "description": "text",
-      "imageUrl": "image_path",
-      "imageHint": "string",
-      "width": "number",
-      "height": "number",
-      "category": "select_option"
-    }
-  ]
-}
+**Gallery Model** (individual .md files):
+```markdown
+---
+title: "Artwork Title"
+description: "Artwork description"
+imageUrl: "/images/uploads/artwork.jpg"
+imageHint: "Alt text for accessibility"
+width: 800
+height: 600
+category: "digital"
+date: 2024-11-06
+---
+
+Optional longer description or additional content can go here.
 ```
 
-**Shop Model**:
-```json
-{
-  "items": [
-    {
-      "id": "string",
-      "name": "string",
-      "imageUrl": "image_path", 
-      "imageHint": "string",
-      "store": "select_option"
-    }
-  ]
-}
+**Shop Model** (individual .md files):
+```markdown
+---
+name: "Product Name"
+imageUrl: "/images/uploads/product.jpg"
+imageHint: "Alt text for product"
+store: "etsy"
+price: "$25.00"
+available: true
+date: 2024-11-06
+---
+
+Product description and details go here.
 ```
 
 **Events Model**:

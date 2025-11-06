@@ -2,7 +2,7 @@
 
 ## Introduction
 
-This feature integrates Decap CMS (formerly Netlify CMS) into an artist portfolio website built with Next.js, enabling the artist to manage content independently through a web-based admin interface. The system will allow content updates for text, images, and gallery items while maintaining the existing site structure and preparing for Vercel deployment.
+This feature integrates Decap CMS into an artist portfolio website built with Next.js, enabling the artist to manage content independently through a web-based admin interface. The system will use GitHub OAuth for authentication and store content as individual markdown files, maintaining compatibility with Vercel deployment and standard CMS practices.
 
 ## Glossary
 
@@ -10,8 +10,8 @@ This feature integrates Decap CMS (formerly Netlify CMS) into an artist portfoli
 - **Portfolio_Website**: The Next.js application showcasing the artist's work, events, shop items, and general information
 - **Content_Editor**: The artist who will use the CMS interface to update website content
 - **Admin_Interface**: The web-based CMS interface accessible at /admin/ path
-- **Git_Gateway**: Authentication service that allows CMS access without requiring direct Git repository permissions
-- **Content_Collections**: Organized groups of editable content (gallery, events, shop, pages)
+- **GitHub_OAuth**: GitHub's built-in authentication system for repository access
+- **Content_Collections**: Organized groups of editable content stored as individual markdown files (gallery, events, shop, pages)
 - **Media_Management**: System for uploading and managing image files through the CMS interface
 
 ## Requirements
@@ -22,9 +22,9 @@ This feature integrates Decap CMS (formerly Netlify CMS) into an artist portfoli
 
 #### Acceptance Criteria
 
-1. WHEN the Content_Editor navigates to /admin/, THE Admin_Interface SHALL display a login screen
-2. WHEN valid credentials are entered, THE Admin_Interface SHALL grant access to content management features
-3. THE Admin_Interface SHALL prevent unauthorized access through authentication
+1. WHEN the Content_Editor navigates to /admin/, THE Admin_Interface SHALL display a GitHub OAuth login screen
+2. WHEN valid GitHub credentials are entered, THE Admin_Interface SHALL grant access to content management features
+3. THE Admin_Interface SHALL prevent unauthorized access through GitHub repository permissions
 4. WHERE authentication fails, THE Admin_Interface SHALL display appropriate error messages
 5. THE Admin_Interface SHALL maintain session security throughout content editing
 
@@ -82,10 +82,10 @@ This feature integrates Decap CMS (formerly Netlify CMS) into an artist portfoli
 
 #### Acceptance Criteria
 
-1. WHEN content is saved through the Admin_Interface, THE Decap_CMS SHALL commit changes to the Git repository
-2. THE Portfolio_Website SHALL trigger automatic redeployment on Vercel when content changes
-3. THE Media_Management SHALL store uploaded images in the appropriate public directory structure
-4. THE Decap_CMS SHALL maintain content file formats compatible with the existing Next.js application
+1. WHEN content is saved through the Admin_Interface, THE Decap_CMS SHALL commit changes directly to the GitHub repository
+2. THE Portfolio_Website SHALL trigger automatic redeployment on Vercel when content changes are pushed to the repository
+3. THE Media_Management SHALL store uploaded images in public/images/uploads/ directory structure
+4. THE Decap_CMS SHALL store content as individual markdown files compatible with the Next.js application
 5. WHERE deployment fails, THE Admin_Interface SHALL provide clear error feedback
 
 ### Requirement 7
