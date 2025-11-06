@@ -1,13 +1,40 @@
-import type { Metadata } from 'next';
-import './globals.css';
-import { Header } from '@/components/layout/header';
-import { Footer } from '@/components/layout/footer';
-import { Toaster } from '@/components/ui/toaster';
-import { cn } from '@/lib/utils';
+import type { Metadata } from "next";
+import { Inter, JetBrains_Mono } from "next/font/google";
+import "./globals.css";
+import { Header } from "@/components/layout/header";
+import { Toaster } from "@/components/ui/toaster";
+
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-geist-sans",
+});
+
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ["latin"],
+  variable: "--font-geist-mono",
+});
 
 export const metadata: Metadata = {
-  title: 'Beetlehead Designs Portfolio',
-  description: 'Portfolio for a digital character artist and mascot designer.',
+  title: "Beetlehead Portfolio",
+  description: "Digital and traditional art portfolio featuring original artwork, fanart, commissions, and more.",
+  keywords: ["art", "digital art", "traditional art", "portfolio", "commissions"],
+  authors: [{ name: "Beetlehead" }],
+  creator: "Beetlehead",
+  openGraph: {
+    title: "Beetlehead Portfolio",
+    description: "Digital and traditional art portfolio featuring original artwork, fanart, commissions, and more.",
+    type: "website",
+    locale: "en_US",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Beetlehead Portfolio",
+    description: "Digital and traditional art portfolio featuring original artwork, fanart, commissions, and more.",
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
 
 export default function RootLayout({
@@ -16,18 +43,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="dark" suppressHydrationWarning>
-      <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link href="https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,400..900;1,400..900&family=Belleza&display=swap" rel="stylesheet" />
-      </head>
-      <body className={cn("font-body antialiased min-h-screen flex flex-col bg-background")}>
+    <html lang="en">
+      <body
+        className={`${inter.variable} ${jetbrainsMono.variable} antialiased min-h-screen bg-background font-sans`}
+      >
         <Header />
-        <main className="flex-grow container mx-auto px-4 py-8">
-            {children}
+        <main className="container mx-auto px-4 py-8">
+          {children}
         </main>
-        <Footer />
         <Toaster />
       </body>
     </html>

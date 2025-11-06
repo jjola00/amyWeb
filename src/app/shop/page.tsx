@@ -1,12 +1,13 @@
 import { InfiniteScroller } from '@/components/shop/infinite-scroller';
-import { shopItems } from '@/lib/shop-items';
+import { getShopItems } from '@/lib/shop-items';
 import { Button } from '@/components/ui/button';
 import { EtsyIcon } from '@/components/icons';
 import Link from 'next/link';
 import { Card } from '@/components/ui/card';
 
-export default function ShopPage() {
-  // Filter only Etsy items
+export default async function ShopPage() {
+  // Get shop items from new content structure
+  const shopItems = await getShopItems();
   const etsyItems = shopItems.filter(item => item.store === 'Etsy');
   const topRowItems = etsyItems.slice(0, Math.ceil(etsyItems.length / 2));
   const bottomRowItems = etsyItems.slice(Math.ceil(etsyItems.length / 2));

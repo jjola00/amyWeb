@@ -1,0 +1,105 @@
+backend:
+  name: git-gateway
+  branch: main # Branch to update (optional; defaults to master)
+
+# Uncomment below to enable drafts
+# publish_mode: editorial_workflow
+
+media_folder: "public/images/uploads" # Media files will be stored in the repo under public/images/uploads
+public_folder: "/images/uploads" # The src attribute for uploaded media will begin with /images/uploads
+
+collections:
+  - name: "gallery"
+    label: "Gallery"
+    folder: "content/gallery"
+    create: false # Don't allow creating new gallery collections
+    slug: "{{slug}}"
+    fields:
+      - label: "Artworks"
+        name: "artworks"
+        widget: "list"
+        fields:
+          - { label: "ID", name: "id", widget: "string" }
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Description", name: "description", widget: "text" }
+          - { label: "Image", name: "imageUrl", widget: "image" }
+          - { label: "Image Alt Text", name: "imageHint", widget: "string" }
+          - { label: "Width", name: "width", widget: "number", value_type: "int" }
+          - { label: "Height", name: "height", widget: "number", value_type: "int" }
+          - label: "Category"
+            name: "category"
+            widget: "select"
+            options:
+              - "Digital Fanart"
+              - "Digital Original Art"
+              - "Traditional Original Art"
+              - "Mascot"
+              - "Commissions"
+              - "Sketches"
+              - "Comics"
+
+  - name: "shop"
+    label: "Shop"
+    folder: "content/shop"
+    create: false # Don't allow creating new shop collections
+    slug: "{{slug}}"
+    fields:
+      - label: "Items"
+        name: "items"
+        widget: "list"
+        fields:
+          - { label: "ID", name: "id", widget: "string" }
+          - { label: "Name", name: "name", widget: "string" }
+          - { label: "Image", name: "imageUrl", widget: "image" }
+          - { label: "Image Alt Text", name: "imageHint", widget: "string" }
+          - label: "Store"
+            name: "store"
+            widget: "select"
+            options:
+              - "Etsy"
+
+  - name: "events"
+    label: "Events"
+    folder: "content/events"
+    create: false # Don't allow creating new event collections
+    slug: "{{slug}}"
+    fields:
+      - label: "Events"
+        name: "events"
+        widget: "list"
+        fields:
+          - { label: "ID", name: "id", widget: "string" }
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Description", name: "description", widget: "text" }
+          - { label: "Date", name: "date", widget: "datetime" }
+          - { label: "Location", name: "location", widget: "string", required: false }
+          - { label: "Link", name: "link", widget: "string", required: false }
+          - { label: "Image", name: "imageUrl", widget: "image", required: false }
+
+  - name: "pages"
+    label: "Pages"
+    folder: "content/pages"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Content", name: "content", widget: "markdown" }
+
+  - name: "settings"
+    label: "Site Settings"
+    files:
+      - label: "General Settings"
+        name: "general"
+        file: "content/settings/general.json"
+        fields:
+          - { label: "Site Title", name: "siteTitle", widget: "string", default: "Artist Portfolio" }
+          - { label: "Site Description", name: "siteDescription", widget: "text" }
+          - { label: "Artist Name", name: "artistName", widget: "string" }
+          - { label: "Artist Bio", name: "artistBio", widget: "markdown" }
+          - { label: "Contact Email", name: "contactEmail", widget: "string", required: false }
+          - { label: "Social Links", name: "socialLinks", widget: "object", fields: [
+              { label: "Instagram", name: "instagram", widget: "string", required: false },
+              { label: "TikTok", name: "tiktok", widget: "string", required: false },
+              { label: "Tumblr", name: "tumblr", widget: "string", required: false },
+              { label: "Etsy", name: "etsy", widget: "string", required: false }
+            ]}

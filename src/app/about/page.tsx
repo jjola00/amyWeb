@@ -1,10 +1,11 @@
 import Image from 'next/image';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { artworks } from '@/lib/placeholder-images';
+import { loadGalleryContent } from '@/lib/content';
 
-export default function AboutPage() {
-    const profilePic = artworks.find(art => art.id === 'profile-pic');
+export default async function AboutPage() {
+    const galleryContent = await loadGalleryContent();
+    const profilePic = galleryContent.artworks.find(art => art.id === 'profile-pic');
     
     return (
         <div className="max-w-4xl mx-auto animate-fade-in">
