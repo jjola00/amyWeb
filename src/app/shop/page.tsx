@@ -33,11 +33,11 @@ export default async function ShopPage() {
         </p>
         <div className="flex justify-center">
           <Card className="hover:border-primary transition-colors duration-300 w-full max-w-md">
-            <Link href="https://www.etsy.com/shop/beetleheaddesigns/?etsrc=sdt&dd_referrer=" target="_blank" rel="noopener noreferrer" className="block p-6 h-full">
+            <a href="https://www.etsy.com/shop/beetleheaddesigns/?etsrc=sdt&dd_referrer=" target="_blank" rel="noopener noreferrer" className="block p-6 h-full">
               <div className="w-full h-40 text-2xl font-headline flex flex-col items-center justify-center gap-4 transition-colors duration-300">
                 <EtsyIcon className="w-40 h-40" />
               </div>
-            </Link>
+            </a>
           </Card>
         </div>
       </div>

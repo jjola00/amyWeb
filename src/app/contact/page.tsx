@@ -13,34 +13,34 @@ export default function ContactPage() {
       </p>
       <Card>
         <CardContent className="p-8 flex flex-col items-center gap-8">
-          <Link href="mailto:beetleheaddesigns@gmail.com" className="w-full max-w-sm">
+          <a href="mailto:beetleheaddesigns@gmail.com" className="w-full max-w-sm">
             <Button size="lg" className="w-full text-lg h-14">
               <Mail className="mr-3 h-6 w-6" />
               beetleheaddesigns@gmail.com
             </Button>
-          </Link>
+          </a>
 
           <div className="text-center">
             <p className="text-muted-foreground mb-4">... or find me on social media:</p>
             <div className="flex justify-center gap-4">
-              <Link href="https://www.instagram.com/beetleheaddesigns" target="_blank" rel="noopener noreferrer">
+              <a href="https://www.instagram.com/beetleheaddesigns" target="_blank" rel="noopener noreferrer">
                 <div className="w-16 h-16 rounded-full border-2 border-border hover:border-primary transition-colors duration-300 flex items-center justify-center">
                   <Instagram className="h-4 w-4" />
                   <span className="sr-only">Instagram</span>
                 </div>
-              </Link>
-              <Link href="https://www.tiktok.com/@beetleheaddesigns" target="_blank" rel="noopener noreferrer">
+              </a>
+              <a href="https://www.tiktok.com/@beetleheaddesigns" target="_blank" rel="noopener noreferrer">
                 <div className="w-16 h-16 rounded-full border-2 border-border hover:border-primary transition-colors duration-300 flex items-center justify-center">
                   <TikTokIcon className="h-4 w-4" />
                   <span className="sr-only">TikTok</span>
                 </div>
-              </Link>
-              <Link href="https://www.tumblr.com/beetleheaddesigns" target="_blank" rel="noopener noreferrer">
+              </a>
+              <a href="https://www.tumblr.com/beetleheaddesigns" target="_blank" rel="noopener noreferrer">
                 <div className="w-16 h-16 rounded-full border-2 border-border hover:border-primary transition-colors duration-300 flex items-center justify-center">
                   <TumblrIcon className="h-4 w-4" />
                   <span className="sr-only">Tumblr</span>
                 </div>
-              </Link>
+              </a>
             </div>
           </div>
         </CardContent>
