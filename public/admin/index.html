@@ -11,7 +11,14 @@
   <!-- Include the script that builds the page and powers Decap CMS -->
   <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
   <script>
+    // Configure Netlify Identity for Vercel deployment
     if (window.netlifyIdentity) {
+      // Initialize with proper site URL for authentication
+      window.netlifyIdentity.init({
+        APIUrl: "https://your-netlify-site.netlify.app/.netlify/identity"
+      });
+
+      // Handle authentication flow
       window.netlifyIdentity.on("init", user => {
         if (!user) {
           window.netlifyIdentity.on("login", () => {
@@ -19,7 +26,40 @@
           });
         }
       });
+
+      // Handle logout
+      window.netlifyIdentity.on("logout", () => {
+        document.location.href = "/admin/";
+      });
+
+      // Handle authentication errors
+      window.netlifyIdentity.on("error", err => {
+        console.error("Authentication error:", err);
+        alert("Authentication failed. Please try again or contact the site administrator.");
+      });
     }
+
+    // Configure CMS for proper authentication
+    window.CMS_MANUAL_INIT = true;
+    
+    // Initialize CMS after authentication is ready
+    document.addEventListener('DOMContentLoaded', function() {
+      if (window.netlifyIdentity) {
+        window.netlifyIdentity.on('init', user => {
+          if (user) {
+            // User is logged in, initialize CMS
+            window.CMS.init();
+          } else {
+            // User is not logged in, show login
+            window.netlifyIdentity.open();
+          }
+        });
+      } else {
+        // Fallback if Identity widget fails to load
+        console.error("Netlify Identity widget failed to load");
+        alert("Authentication service unavailable. Please try again later.");
+      }
+    });
   </script>
 </body>
 </html>

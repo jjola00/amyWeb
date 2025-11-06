@@ -4,6 +4,7 @@ import "./globals.css";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import { Toaster } from "@/components/ui/toaster";
+import { loadSiteSettings } from "@/lib/content";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -20,28 +21,32 @@ const playfairDisplay = Playfair_Display({
   variable: "--font-headline",
 });
 
-export const metadata: Metadata = {
-  title: "Beetlehead Portfolio",
-  description: "Digital and traditional art portfolio featuring original artwork, fanart, commissions, and more.",
-  keywords: ["art", "digital art", "traditional art", "portfolio", "commissions"],
-  authors: [{ name: "Beetlehead" }],
-  creator: "Beetlehead",
-  openGraph: {
-    title: "Beetlehead Portfolio",
-    description: "Digital and traditional art portfolio featuring original artwork, fanart, commissions, and more.",
-    type: "website",
-    locale: "en_US",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Beetlehead Portfolio",
-    description: "Digital and traditional art portfolio featuring original artwork, fanart, commissions, and more.",
-  },
-  robots: {
-    index: true,
-    follow: true,
-  },
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const settings = await loadSiteSettings();
+  
+  return {
+    title: settings.siteTitle,
+    description: settings.siteDescription,
+    keywords: ["art", "digital art", "traditional art", "portfolio", "commissions"],
+    authors: [{ name: settings.artistName }],
+    creator: settings.artistName,
+    openGraph: {
+      title: settings.siteTitle,
+      description: settings.siteDescription,
+      type: "website",
+      locale: "en_US",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: settings.siteTitle,
+      description: settings.siteDescription,
+    },
+    robots: {
+      index: true,
+      follow: true,
+    },
+  };
+}
 
 export default function RootLayout({
   children,
@@ -50,6 +55,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        {/* Netlify Identity Widget for CMS Authentication */}
+        <script 
+          src="https://identity.netlify.com/v1/netlify-identity-widget.js"
+          async
+        />
+      </head>
       <body
         className={`${inter.variable} ${jetbrainsMono.variable} ${playfairDisplay.variable} antialiased min-h-screen bg-background font-sans flex flex-col`}
       >
@@ -59,6 +71,23 @@ export default function RootLayout({
         </main>
         <Footer />
         <Toaster />
+        
+        {/* Netlify Identity Authentication Handler */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              if (window.netlifyIdentity) {
+                window.netlifyIdentity.on("init", user => {
+                  if (!user) {
+                    window.netlifyIdentity.on("login", () => {
+                      document.location.href = "/admin/";
+                    });
+                  }
+                });
+              }
+            `,
+          }}
+        />
       </body>
     </html>
   );

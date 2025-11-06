@@ -46,6 +46,14 @@ export async function loadGalleryContent(): Promise<GalleryContent> {
 }
 
 export async function loadShopContent(): Promise<ShopContent> {
+  const cacheKey = 'shop-content';
+  
+  // Check cache first (only in development for faster rebuilds)
+  if (process.env.NODE_ENV === 'development') {
+    const cached = getCachedContent<ShopContent>(cacheKey);
+    if (cached) return cached;
+  }
+  
   try {
     const filePath = path.join(process.cwd(), 'content/shop/items.json');
     const fileContent = await fs.readFile(filePath, 'utf-8');
@@ -53,6 +61,12 @@ export async function loadShopContent(): Promise<ShopContent> {
     
     // Validate content using Zod schema
     const validatedData = ShopContentSchema.parse(rawData);
+    
+    // Cache the result
+    if (process.env.NODE_ENV === 'development') {
+      setCachedContent(cacheKey, validatedData);
+    }
+    
     return validatedData;
   } catch (error) {
     console.error('Error loading shop content:', error);
@@ -62,6 +76,14 @@ export async function loadShopContent(): Promise<ShopContent> {
 }
 
 export async function loadEventsContent(): Promise<EventsContent> {
+  const cacheKey = 'events-content';
+  
+  // Check cache first (only in development for faster rebuilds)
+  if (process.env.NODE_ENV === 'development') {
+    const cached = getCachedContent<EventsContent>(cacheKey);
+    if (cached) return cached;
+  }
+  
   try {
     const filePath = path.join(process.cwd(), 'content/events/events.json');
     const fileContent = await fs.readFile(filePath, 'utf-8');
@@ -69,6 +91,12 @@ export async function loadEventsContent(): Promise<EventsContent> {
     
     // Validate content using Zod schema
     const validatedData = EventsContentSchema.parse(rawData);
+    
+    // Cache the result
+    if (process.env.NODE_ENV === 'development') {
+      setCachedContent(cacheKey, validatedData);
+    }
+    
     return validatedData;
   } catch (error) {
     console.error('Error loading events content:', error);
@@ -78,6 +106,10 @@ export async function loadEventsContent(): Promise<EventsContent> {
 }
 
 export async function loadPageContent(pageName: string): Promise<PageContent> {
+  if (!/^[a-zA-Z0-9_-]+$/.test(pageName)) {
+    console.error(`Invalid page name: ${pageName}`);
+    return { title: 'Page Not Found', content: 'Content could not be loaded.' };
+  }
   try {
     const filePath = path.join(process.cwd(), `content/pages/${pageName}.json`);
     const fileContent = await fs.readFile(filePath, 'utf-8');
@@ -97,6 +129,14 @@ export async function loadPageContent(pageName: string): Promise<PageContent> {
 }
 
 export async function loadSiteSettings(): Promise<SiteSettings> {
+  const cacheKey = 'site-settings';
+  
+  // Check cache first (only in development for faster rebuilds)
+  if (process.env.NODE_ENV === 'development') {
+    const cached = getCachedContent<SiteSettings>(cacheKey);
+    if (cached) return cached;
+  }
+  
   try {
     const filePath = path.join(process.cwd(), 'content/settings/general.json');
     const fileContent = await fs.readFile(filePath, 'utf-8');
@@ -104,6 +144,12 @@ export async function loadSiteSettings(): Promise<SiteSettings> {
     
     // Validate content using Zod schema
     const validatedData = SiteSettingsSchema.parse(rawData);
+    
+    // Cache the result
+    if (process.env.NODE_ENV === 'development') {
+      setCachedContent(cacheKey, validatedData);
+    }
+    
     return validatedData;
   } catch (error) {
     console.error('Error loading site settings:', error);

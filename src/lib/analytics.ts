@@ -75,9 +75,17 @@ export function trackPerformance(metric: string, value: number, unit?: string): 
 }
 
 // Web Vitals integration (for future use)
-export function reportWebVitals(metric: any): void {
+export interface WebVitalMetric {
+  id: string;
+  name: string;
+  value: number;
+  rating: 'good' | 'needs-improvement' | 'poor';
+  delta?: number;
+}
+
+export function reportWebVitals(metric: WebVitalMetric): void {
   if (process.env.NODE_ENV === 'production') {
     // Future: Send to analytics service
-    trackPerformance(metric.name, metric.value, metric.unit);
+    trackPerformance(metric.name, metric.value);
   }
 }

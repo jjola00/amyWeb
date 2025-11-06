@@ -7,6 +7,7 @@ export async function getArtworks(): Promise<Artwork[]> {
   return content.artworks;
 }
 
-// Legacy export for components that expect synchronous access
-// This will be replaced when components are updated to use async loading
+// DEPRECATED: This export is always an empty array and will be removed soon.
+// Any component importing `artworks` directly will receive no data.
+// Please migrate to using the async `getArtworks()` function instead.
 export const artworks: Artwork[] = [];

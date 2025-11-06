@@ -1,6 +1,13 @@
 backend:
   name: git-gateway
   branch: main # Branch to update (optional; defaults to master)
+  # Git Gateway configuration for Netlify Identity
+  repo: owner/repository-name # Replace with your GitHub repository
+  site_domain: your-netlify-site.netlify.app # Replace with your Netlify site domain
+
+# Site URL configuration for Vercel deployment
+site_url: https://your-vercel-domain.vercel.app # Replace with your Vercel domain
+display_url: https://your-vercel-domain.vercel.app # Replace with your Vercel domain
 
 # Uncomment below to enable drafts
 # publish_mode: editorial_workflow

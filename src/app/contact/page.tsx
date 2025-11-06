@@ -23,19 +23,19 @@ export default function ContactPage() {
           <div className="text-center">
             <p className="text-muted-foreground mb-4">... or find me on social media:</p>
             <div className="flex justify-center gap-4">
-              <Link href="#" target="_blank" rel="noopener noreferrer">
+              <Link href="https://www.instagram.com/beetleheaddesigns" target="_blank" rel="noopener noreferrer">
                 <div className="w-16 h-16 rounded-full border-2 border-border hover:border-primary transition-colors duration-300 flex items-center justify-center">
                   <Instagram className="h-4 w-4" />
                   <span className="sr-only">Instagram</span>
                 </div>
               </Link>
-              <Link href="#" target="_blank" rel="noopener noreferrer">
+              <Link href="https://www.tiktok.com/@beetleheaddesigns" target="_blank" rel="noopener noreferrer">
                 <div className="w-16 h-16 rounded-full border-2 border-border hover:border-primary transition-colors duration-300 flex items-center justify-center">
                   <TikTokIcon className="h-4 w-4" />
                   <span className="sr-only">TikTok</span>
                 </div>
               </Link>
-              <Link href="#" target="_blank" rel="noopener noreferrer">
+              <Link href="https://www.tumblr.com/beetleheaddesigns" target="_blank" rel="noopener noreferrer">
                 <div className="w-16 h-16 rounded-full border-2 border-border hover:border-primary transition-colors duration-300 flex items-center justify-center">
                   <TumblrIcon className="h-4 w-4" />
                   <span className="sr-only">Tumblr</span>

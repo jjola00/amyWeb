@@ -67,7 +67,15 @@ export function measurePerformance(name: string, fn: () => void): void {
 }
 
 // Web Vitals reporting (for future analytics integration)
-export function reportWebVitals(metric: any): void {
+export interface WebVitalMetric {
+  id: string;
+  name: string;
+  value: number;
+  rating: 'good' | 'needs-improvement' | 'poor';
+  delta?: number;
+}
+
+export function reportWebVitals(metric: WebVitalMetric): void {
   if (process.env.NODE_ENV === 'production') {
     // Future: Send to analytics service
     console.log(metric);

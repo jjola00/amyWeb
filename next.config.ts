@@ -49,6 +49,16 @@ const nextConfig: NextConfig = {
     ],
   },
   
+  // Static file serving for CMS uploads
+  async rewrites() {
+    return [
+      {
+        source: '/admin',
+        destination: '/admin/index.html',
+      },
+    ];
+  },
+  
   // Performance optimizations
   experimental: {
     optimizePackageImports: ['lucide-react', '@radix-ui/react-icons'],
