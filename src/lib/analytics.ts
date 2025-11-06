@@ -59,7 +59,7 @@ export const analytics = new Analytics();
 
 // Convenience functions
 export function trackPageView(page: string, title: string): void {
-  analytics.pageView({ page, title, referrer: document.referrer });
+  analytics.pageView({ page, title, referrer: typeof document !== 'undefined' ? document.referrer : undefined });
 }
 
 export function trackEvent(name: string, properties?: Record<string, any>): void {
