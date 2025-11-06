@@ -128,7 +128,7 @@
       "imageHint": "placeholder image",
       "width": 900,
       "height": 600,
-      "category": "Traditional Original Art"
+      "category": "Comics"
     },
     {
       "id": "13",
@@ -138,7 +138,7 @@
       "imageHint": "placeholder image",
       "width": 600,
       "height": 900,
-      "category": "Digital Fanart"
+      "category": "Sketches"
     },
     {
       "id": "14",
@@ -148,7 +148,7 @@
       "imageHint": "placeholder image",
       "width": 700,
       "height": 800,
-      "category": "Digital Original Art"
+      "category": "Commissions"
     },
     {
       "id": "15",
@@ -168,6 +168,66 @@
       "imageHint": "placeholder image",
       "width": 700,
       "height": 900,
+      "category": "Commissions"
+    },
+    {
+      "id": "17",
+      "title": "Placeholder Image 17",
+      "description": "This is a placeholder image.",
+      "imageUrl": "https://placehold.co/650x800/222222/999999?text=",
+      "imageHint": "placeholder image",
+      "width": 650,
+      "height": 800,
+      "category": "Sketches"
+    },
+    {
+      "id": "18",
+      "title": "Placeholder Image 18",
+      "description": "This is a placeholder image.",
+      "imageUrl": "https://placehold.co/800x600/222222/999999?text=",
+      "imageHint": "placeholder image",
+      "width": 800,
+      "height": 600,
+      "category": "Comics"
+    },
+    {
+      "id": "19",
+      "title": "Placeholder Image 19",
+      "description": "This is a placeholder image.",
+      "imageUrl": "https://placehold.co/600x750/222222/999999?text=",
+      "imageHint": "placeholder image",
+      "width": 600,
+      "height": 750,
+      "category": "Commissions"
+    },
+    {
+      "id": "20",
+      "title": "Placeholder Image 20",
+      "description": "This is a placeholder image.",
+      "imageUrl": "https://placehold.co/700x650/222222/999999?text=",
+      "imageHint": "placeholder image",
+      "width": 700,
+      "height": 650,
+      "category": "Sketches"
+    },
+    {
+      "id": "21",
+      "title": "Placeholder Image 21",
+      "description": "This is a placeholder image.",
+      "imageUrl": "https://placehold.co/900x700/222222/999999?text=",
+      "imageHint": "placeholder image",
+      "width": 900,
+      "height": 700,
+      "category": "Comics"
+    },
+    {
+      "id": "22",
+      "title": "Placeholder Image 22",
+      "description": "This is a placeholder image.",
+      "imageUrl": "https://placehold.co/750x850/222222/999999?text=",
+      "imageHint": "placeholder image",
+      "width": 750,
+      "height": 850,
       "category": "Traditional Original Art"
     }
   ]

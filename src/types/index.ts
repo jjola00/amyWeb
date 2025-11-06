@@ -1,4 +1,4 @@
-export type ArtworkCategory = 'Digital Fanart' | 'Digital Original Art' | 'Traditional Original Art'| 'Mascot';
+export type ArtworkCategory = 'Digital Fanart' | 'Digital Original Art' | 'Traditional Original Art' | 'Mascot' | 'Commissions' | 'Sketches' | 'Comics';
 
 export interface Artwork {
   id: string;
