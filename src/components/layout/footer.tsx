@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { LinktreeIcon } from "@/components/icons";
-import { Button } from "@/components/ui/button";
 
 export function Footer() {
   return (
