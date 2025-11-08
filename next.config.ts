@@ -1,4 +1,5 @@
 import type {NextConfig} from 'next';
+import { withPayload } from '@payloadcms/next/withPayload';
 
 // Bundle analyzer setup
 const withBundleAnalyzer = require('@next/bundle-analyzer')({
@@ -89,4 +90,4 @@ const nextConfig: NextConfig = {
   },
 };
 
-export default withBundleAnalyzer(nextConfig);
+export default withPayload(withBundleAnalyzer(nextConfig));
