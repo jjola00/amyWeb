@@ -1,8 +1,8 @@
-import { loadGalleryContent } from "@/lib/content";
+import { loadGalleryContentHybrid } from "@/lib/payload-content";
 import { ArtworkGrid } from "@/components/gallery/artwork-grid";
 
 export default async function GalleryPage() {
-  const galleryContent = await loadGalleryContent();
+  const galleryContent = await loadGalleryContentHybrid();
   
   return (
     <div className="space-y-8">

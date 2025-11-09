@@ -12,47 +12,89 @@ const nextConfig: NextConfig = {
   poweredByHeader: false,
   compress: true,
   
-  // Static generation
+  // Static generation and performance
   trailingSlash: false,
+  generateEtags: false, // Disable ETags for better caching control
+  
+  // Bundle optimization
+  modularizeImports: {
+    'lucide-react': {
+      transform: 'lucide-react/dist/esm/icons/{{member}}',
+    },
+  },
+  
+  // External packages for server components - only essential packages
+  serverExternalPackages: [
+    'mongoose', 
+    'payload', 
+    '@payloadcms/db-mongodb',
+    'sharp'
+  ],
+  
+  // Experimental features for performance and bundle optimization
+  experimental: {
+    optimizePackageImports: ['lucide-react', '@radix-ui/react-icons'],
+    // optimizeCss: true, // Disabled due to critters module issue
+  },
+  
+  // Turbopack configuration (moved from experimental)
+  turbopack: {
+    rules: {
+      '*.svg': {
+        loaders: ['@svgr/webpack'],
+        as: '*.js',
+      },
+    },
+  },
+  
+  // Webpack configuration for Payload CMS compatibility
+  webpack: (config, { isServer }) => {
+    // Add support for Monaco editor in Payload CMS
+    if (!isServer) {
+      config.resolve.fallback = {
+        ...config.resolve.fallback,
+        fs: false,
+        path: false,
+        os: false,
+      }
+    }
+    
+    return config
+  },
   
   // Type checking and linting
   typescript: {
-    ignoreBuildErrors: true, // Temporarily allow builds to succeed even with type errors
+    ignoreBuildErrors: false, // Enable proper type checking now that errors are fixed
   },
   eslint: {
     ignoreDuringBuilds: false, // Enable linting for production builds
   },
   
-  // Image optimization
+  // Image optimization - optimized for performance
   images: {
     formats: ['image/webp', 'image/avif'],
-    deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
+    deviceSizes: [640, 750, 828, 1080, 1200, 1920],
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
+    minimumCacheTTL: 60 * 60 * 24 * 30, // 30 days cache
+    dangerouslyAllowSVG: true,
+    contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
     remotePatterns: [
       {
         protocol: 'https',
         hostname: 'placehold.co',
-        port: '',
         pathname: '/**',
       },
       {
         protocol: 'https',
         hostname: 'images.unsplash.com',
-        port: '',
         pathname: '/**',
       },
       {
         protocol: 'https',
         hostname: 'picsum.photos',
-        port: '',
         pathname: '/**',
       },
     ],
-  },
-  
-  // Performance optimizations
-  experimental: {
-    optimizePackageImports: ['lucide-react', '@radix-ui/react-icons'],
   },
   
   // Security headers

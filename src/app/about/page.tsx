@@ -1,10 +1,10 @@
 import Image from 'next/image';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { loadGalleryContent } from '@/lib/content';
+import { loadGalleryContentHybrid } from '@/lib/payload-content';
 
 export default async function AboutPage() {
-    const galleryContent = await loadGalleryContent();
+    const galleryContent = await loadGalleryContentHybrid();
     const profilePic = galleryContent.artworks.find(art => art.id === 'profile-pic');
     
     return (

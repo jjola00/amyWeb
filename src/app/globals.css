@@ -1,85 +1,36 @@
+@import '@payloadcms/next/css';
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
   :root {
-    --background: 0 0% 13.3%;
-    /* #222222 */
-    --foreground: 0 0% 98%;
-
-    --card: 0 0% 16%;
-    --card-foreground: 0 0% 98%;
-
-    --popover: 0 0% 13.3%;
-    --popover-foreground: 0 0% 98%;
-
-    --primary: 283 62% 60%;
-    /* #B15CD8 */
-    --primary-foreground: 0 0% 100%;
-
-    --secondary: 240 3.7% 20%;
-    --secondary-foreground: 0 0% 98%;
-
-    --muted: 240 3.7% 15.9%;
-    --muted-foreground: 240 5% 64.9%;
-
-    --accent: 339 92% 58%;
-    /* #F7347A */
-    --accent-foreground: 0 0% 100%;
-
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 0 0% 98%;
-
-    --border: 240 3.7% 25%;
-    --input: 240 3.7% 20%;
-    --ring: 283 62% 60%;
-
-    --chart-1: 12 76% 61%;
-    --chart-2: 173 58% 39%;
-    --chart-3: 197 37% 24%;
-    --chart-4: 43 74% 66%;
-    --chart-5: 27 87% 67%;
+    /* Dark theme as default - Black/Purple/Red color scheme */
+    --background: 0 0% 4%;           /* Very dark black background */
+    --foreground: 0 0% 95%;          /* Light text */
+    --card: 0 0% 8%;                 /* Slightly lighter black for cards */
+    --card-foreground: 0 0% 95%;     /* Light text on cards */
+    --popover: 0 0% 8%;              /* Dark popover */
+    --popover-foreground: 0 0% 95%;  /* Light text in popover */
+    --primary: 280 100% 70%;         /* Bright purple for primary elements */
+    --primary-foreground: 0 0% 0%;   /* Black text on purple */
+    --secondary: 0 0% 15%;           /* Dark gray for secondary */
+    --secondary-foreground: 0 0% 95%; /* Light text on secondary */
+    --muted: 0 0% 12%;               /* Muted dark background */
+    --muted-foreground: 0 0% 65%;    /* Muted light text */
+    --accent: 0 85% 60%;             /* Red accent color */
+    --accent-foreground: 0 0% 95%;   /* Light text on red */
+    --destructive: 0 85% 60%;        /* Red for destructive actions */
+    --destructive-foreground: 0 0% 95%; /* Light text on red */
+    --border: 0 0% 20%;              /* Dark border */
+    --input: 0 0% 12%;               /* Dark input background */
+    --ring: 280 100% 70%;            /* Purple focus ring */
     --radius: 0.5rem;
-  }
-
-  .dark {
-    --background: 0 0% 13.3%;
-    /* #222222 */
-    --foreground: 0 0% 98%;
-
-    --card: 0 0% 16%;
-    --card-foreground: 0 0% 98%;
-
-    --popover: 0 0% 13.3%;
-    --popover-foreground: 0 0% 98%;
-
-    --primary: 283 62% 60%;
-    /* #B15CD8 */
-    --primary-foreground: 0 0% 100%;
-
-    --secondary: 240 3.7% 20%;
-    --secondary-foreground: 0 0% 98%;
-
-    --muted: 240 3.7% 15.9%;
-    --muted-foreground: 240 5% 64.9%;
-
-    --accent: 339 92% 58%;
-    /* #F7347A */
-    --accent-foreground: 0 0% 100%;
-
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 0 0% 98%;
-
-    --border: 240 3.7% 25%;
-    --input: 240 3.7% 20%;
-    --ring: 283 62% 60%;
-
-    --chart-1: 220 70% 50%;
-    --chart-2: 160 60% 45%;
-    --chart-3: 30 80% 55%;
-    --chart-4: 280 65% 60%;
-    --chart-5: 340 75% 55%;
+    --chart-1: 280 100% 70%;         /* Purple */
+    --chart-2: 0 85% 60%;            /* Red */
+    --chart-3: 0 0% 50%;             /* Gray */
+    --chart-4: 320 100% 70%;         /* Pink-purple */
+    --chart-5: 340 85% 60%;          /* Red-pink */
   }
 }
 
@@ -87,8 +38,27 @@
   * {
     @apply border-border;
   }
-
   body {
     @apply bg-background text-foreground;
+    /* Ensure dark theme */
+    background-color: hsl(0 0% 4%);
+    color: hsl(0 0% 95%);
+  }
+}
+
+@layer utilities {
+  .animate-fade-in {
+    animation: fadeIn 0.5s ease-in-out;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
