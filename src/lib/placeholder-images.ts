@@ -1,12 +1,13 @@
-import { loadGalleryContent } from './content';
+// This file is deprecated - all artwork data now comes from Sanity CMS
+// Use getArtworks() from sanity-queries.ts instead
+
 import type { Artwork } from '@/types';
 
-// For backward compatibility, provide a function to get artworks
-export async function getArtworks(): Promise<Artwork[]> {
-  const content = await loadGalleryContent();
-  return content.artworks;
-}
-
-// Legacy export for components that expect synchronous access
-// This will be replaced when components are updated to use async loading
+// Legacy exports for backward compatibility - will be empty since we use Sanity now
 export const artworks: Artwork[] = [];
+
+export async function getArtworks(): Promise<Artwork[]> {
+  // This function is deprecated
+  // Use getArtworks() from ./sanity-queries.ts instead
+  return [];
+}

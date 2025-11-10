@@ -13,8 +13,8 @@ export function ArtworkGrid({ artworks }: { artworks: Artwork[] }) {
   const [activeFilter, setActiveFilter] = useState<string>('All');
   const [selectedImage, setSelectedImage] = useState<Artwork | null>(null);
 
-  // Extract unique categories from artworks
-  const categories = ['All', ...Array.from(new Set(artworks.map(art => art.category?.name).filter(Boolean)))];
+  // Extract unique categories from artworks, filtering out undefined values
+  const categories = ['All', ...Array.from(new Set(artworks.map(art => art.category?.name).filter((name): name is string => Boolean(name))))];
 
   const filteredArtworks = activeFilter === 'All'
     ? artworks
@@ -45,8 +45,8 @@ export function ArtworkGrid({ artworks }: { artworks: Artwork[] }) {
                     <Image
                       src={imagePresets.card(art.image).url()}
                       alt={art.image.alt}
-                      width={600}
-                      height={800}
+                      width={art.image.asset.metadata?.dimensions?.width || 600}
+                      height={art.image.asset.metadata?.dimensions?.height || 800}
                       className="w-full h-auto transition-transform duration-300 ease-in-out group-hover:scale-105"
                       priority={index < 8}
                       placeholder={getBlurDataURL(art.image) ? "blur" : "empty"}

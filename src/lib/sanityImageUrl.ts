@@ -17,19 +17,15 @@ export const imagePresets = {
     .auto('format')
     .quality(80),
 
-  // Gallery cards - main grid view
+  // Gallery cards - main grid view (no cropping to preserve aspect ratio)
   card: (source: any) => urlFor(source)
     .width(600)
-    .height(800)
-    .fit('crop')
     .auto('format')
     .quality(85),
 
-  // Lightbox/full view - high quality for viewing
+  // Lightbox/full view - high quality for viewing (no height restriction)
   fullsize: (source: any) => urlFor(source)
     .width(1200)
-    .height(1600)
-    .fit('inside')
     .auto('format')
     .quality(90),
 
@@ -44,8 +40,6 @@ export const imagePresets = {
   // Mobile optimized versions
   cardMobile: (source: any) => urlFor(source)
     .width(300)
-    .height(400)
-    .fit('crop')
     .auto('format')
     .quality(80),
 }

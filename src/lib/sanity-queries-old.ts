@@ -331,35 +331,11 @@ export const getSiteSettings = async () => {
   `)
 }
 
+// DEPRECATED: This file contains old Sanity queries and is no longer used.
+// All functionality has been moved to sanity-queries.ts
+// This file can be safely deleted.
+
 // Search functionality
 export const searchContent = async (query: string) => {
-  return await sanityClient.fetch(`
-    {
-      "artworks": *[_type == "artwork" && (title match $query || description match $query)] | order(title asc) [0...5] {
-        _id,
-        title,
-        slug,
-        image {
-          asset->{
-            _id,
-            url
-          },
-          alt
-        }
-      },
-      "blogPosts": *[_type == "blog" && (title match $query || excerpt match $query)] | order(publishedAt desc) [0...3] {
-        _id,
-        title,
-        slug,
-        excerpt,
-        featuredImage {
-          asset->{
-            _id,
-            url
-          },
-          alt
-        }
-      }
-    }
-  `, { query: `${query}*` })
+  throw new Error('This function has been deprecated. Use queries from sanity-queries.ts instead')
 }
