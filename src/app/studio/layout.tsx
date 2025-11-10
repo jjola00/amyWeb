@@ -1,0 +1,31 @@
+// 🔒 Security: Metadata prevents crawling/indexing
+export const metadata = {
+  title: 'Studio',
+  robots: {
+    index: false,
+    follow: false,
+  },
+}
+
+// Additional security metadata
+export const robots = {
+  index: false,
+  follow: false,
+  nocache: true,
+  googleBot: {
+    index: false,
+    follow: false,
+    noimageindex: true,
+    'max-video-preview': -1,
+    'max-image-preview': 'large',
+    'max-snippet': -1,
+  },
+}
+
+export default function StudioLayout({
+  children,
+}: {
+  children: React.ReactNode
+}) {
+  return children
+}

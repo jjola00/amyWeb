@@ -1,8 +1,6 @@
 import { defineConfig } from 'sanity'
 import { deskTool } from 'sanity/desk'
 import { visionTool } from '@sanity/vision'
-import { colorInput } from '@sanity/color-input'
-import { imageHotspotArrayPlugin } from 'sanity-plugin-hotspot-array'
 
 // Import schemas
 import artwork from './sanity/schemas/artwork'
@@ -43,11 +41,34 @@ export default defineConfig({
           ]),
     }),
     visionTool(),
-    colorInput(),
-    imageHotspotArrayPlugin(),
   ],
   
   schema: {
     types: [artwork, category, about],
   },
+  
+  // 🔒 SECURITY: Authentication configuration
+  auth: {
+    // Use Sanity's built-in authentication
+    mode: 'replace',
+    providers: [
+      {
+        name: 'sanity',
+        title: 'Login with Sanity',
+        url: 'https://api.sanity.io/v2021-10-21/auth/login',
+      }
+    ]
+  },
+  
+  // 🔒 SECURITY: Document access control
+  document: {
+    // Custom document actions (optional)
+    actions: (prev, context) => {
+      // Only allow certain actions for authenticated users
+      if (context.currentUser) {
+        return prev
+      }
+      return []
+    }
+  }
 })
