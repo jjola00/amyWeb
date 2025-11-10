@@ -5,5 +5,8 @@ export default defineCliConfig({
     projectId: '67ufanvv',
     dataset: 'production'
   },
-  studioHost: 'beetlehead-designs'
+  studioHost: 'beetlehead-designs',
+  deployment: {
+    appId: 'ih4k7tle5oa3a9qhispooqlq',
+  },
 })

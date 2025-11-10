@@ -1,6 +1,5 @@
 import { defineConfig } from 'sanity'
 import { deskTool } from 'sanity/desk'
-import { visionTool } from '@sanity/vision'
 
 // Import schemas
 import artwork from './sanity/schemas/artwork'
@@ -16,31 +15,9 @@ export default defineConfig({
   projectId,
   dataset,
   
+  // Using basic deskTool without custom structure
   plugins: [
-    deskTool({
-      structure: (S) =>
-        S.list()
-          .title('Content')
-          .items([
-            // About Page (singleton)
-            S.listItem()
-              .title('About Page')
-              .child(S.document().schemaType('aboutPage').documentId('about')),
-            
-            S.divider(),
-            
-            // Artworks
-            S.listItem()
-              .title('🎨 Artworks')
-              .child(S.documentTypeList('artwork')),
-            
-            // Art Categories
-            S.listItem()
-              .title('🏷️ Art Categories')
-              .child(S.documentTypeList('category')),
-          ]),
-    }),
-    visionTool(),
+    deskTool()
   ],
   
   schema: {

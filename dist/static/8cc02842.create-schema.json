@@ -1,0 +1,296 @@
+[
+  {
+    "fields": [
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "description": "What do you want to call this artwork?",
+        "name": "title",
+        "type": "string",
+        "title": "Name of Drawing"
+      },
+      {
+        "options": {
+          "hotspot": true,
+          "metadata": [
+            "blurhash",
+            "lqip",
+            "palette"
+          ],
+          "storeOriginalFilename": false
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "fields": [
+          {
+            "placeholder": "Digital illustration of...",
+            "validation": [
+              {
+                "rules": [
+                  {
+                    "flag": "presence",
+                    "constraint": "required"
+                  }
+                ],
+                "level": "error"
+              }
+            ],
+            "description": "Briefly describe what this artwork shows (e.g., \"Digital illustration of a pink-haired character\")",
+            "name": "alt",
+            "type": "string",
+            "title": "Alt text (for accessibility)"
+          }
+        ],
+        "name": "image",
+        "type": "image",
+        "title": "Upload Image"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "description": "What type of art is this? (Mascot, Comic, etc.)",
+        "to": [
+          {
+            "type": "category"
+          }
+        ],
+        "name": "category",
+        "type": "reference",
+        "title": "Tag/Category"
+      },
+      {
+        "rows": 3,
+        "description": "Tell us about this artwork (optional)",
+        "name": "description",
+        "type": "text",
+        "title": "Description (Optional)"
+      },
+      {
+        "options": {
+          "source": "title",
+          "maxLength": 96
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "custom"
+              },
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "description": "Click generate to create the URL slug from the artwork title",
+        "name": "slug",
+        "type": "slug",
+        "title": "URL Slug"
+      }
+    ],
+    "name": "artwork",
+    "type": "document"
+  },
+  {
+    "fields": [
+      {
+        "options": {
+          "list": [
+            {
+              "title": "Digital Fanart",
+              "value": "Digital Fanart"
+            },
+            {
+              "title": "Digital Original Art",
+              "value": "Digital Original Art"
+            },
+            {
+              "title": "Traditional Original Art",
+              "value": "Traditional Original Art"
+            },
+            {
+              "title": "Mascot",
+              "value": "Mascot"
+            },
+            {
+              "title": "Commissions",
+              "value": "Commissions"
+            },
+            {
+              "title": "Sketches",
+              "value": "Sketches"
+            },
+            {
+              "title": "Comics",
+              "value": "Comics"
+            }
+          ],
+          "layout": "dropdown"
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "valid",
+                "constraint": [
+                  "Digital Fanart",
+                  "Digital Original Art",
+                  "Traditional Original Art",
+                  "Mascot",
+                  "Commissions",
+                  "Sketches",
+                  "Comics"
+                ]
+              },
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "description": "Select from existing or type to add a new category",
+        "name": "name",
+        "type": "string",
+        "title": "Category Name"
+      },
+      {
+        "options": {
+          "source": "name",
+          "maxLength": 96
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "custom"
+              },
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "description": "Click generate to create the URL slug from the name",
+        "name": "slug",
+        "type": "slug",
+        "title": "URL Slug"
+      },
+      {
+        "rows": 2,
+        "placeholder": "e.g., Digital illustrations, hand-drawn artwork, character designs...",
+        "description": "What type of art goes in this category? (optional)",
+        "name": "description",
+        "type": "text",
+        "title": "Description (Optional)"
+      }
+    ],
+    "name": "category",
+    "type": "document",
+    "title": "Art Categories"
+  },
+  {
+    "fields": [
+      {
+        "options": {
+          "hotspot": true
+        },
+        "description": "Upload your photo here",
+        "fields": [
+          {
+            "validation": [
+              {
+                "rules": [
+                  {
+                    "flag": "presence",
+                    "constraint": "required"
+                  }
+                ],
+                "level": "error"
+              }
+            ],
+            "name": "alt",
+            "type": "string",
+            "title": "Alt text (for accessibility)"
+          }
+        ],
+        "name": "artistPhoto",
+        "type": "image"
+      },
+      {
+        "rows": 10,
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "description": "Tell people about yourself and your art",
+        "name": "artistBio",
+        "type": "text",
+        "title": "About You"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "description": "How should people call you?",
+        "name": "artistName",
+        "type": "string",
+        "title": "Your Name"
+      },
+      {
+        "description": "Where are you based? (e.g., Dublin, Ireland)",
+        "name": "location",
+        "type": "string"
+      }
+    ],
+    "name": "aboutPage",
+    "type": "document"
+  }
+]
