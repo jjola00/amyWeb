@@ -69,8 +69,7 @@ export default async function EventsPage() {
             <div className="text-center mb-12">
                 <h1 className="text-4xl font-headline md:text-5xl text-center text-primary mb-4">EVENTS</h1>
                 <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-                    Stay updated with upcoming art exhibitions, gallery shows, and special events. 
-                    Join us for unique artistic experiences and community gatherings.
+                    Some events I'm heading to
                 </p>
             </div>
 
@@ -159,9 +158,6 @@ export default async function EventsPage() {
             <div className="mt-16 text-center">
                 <div className="bg-muted/50 rounded-lg p-8">
                     <h3 className="text-xl font-semibold mb-2">Want to collaborate or host an event?</h3>
-                    <p className="text-muted-foreground mb-4">
-                        Get in touch to discuss exhibitions, workshops, or other artistic collaborations.
-                    </p>
                     <a 
                         href="/contact" 
                         className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-6 py-2 rounded-lg hover:bg-primary/90 transition-colors"

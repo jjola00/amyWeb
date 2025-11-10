@@ -466,5 +466,245 @@
     ],
     "name": "event",
     "type": "document"
+  },
+  {
+    "fields": [
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "description": "A short label for the shop item (e.g., \"Badge - Pink Cat\")",
+        "name": "name",
+        "type": "string",
+        "title": "Item Label"
+      },
+      {
+        "options": {
+          "hotspot": true,
+          "metadata": [
+            "blurhash",
+            "lqip",
+            "palette"
+          ],
+          "storeOriginalFilename": false
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "fields": [
+          {
+            "validation": [
+              {
+                "rules": [
+                  {
+                    "flag": "presence",
+                    "constraint": "required"
+                  }
+                ],
+                "level": "error"
+              }
+            ],
+            "description": "Short accessible description for the image",
+            "name": "alt",
+            "type": "string",
+            "title": "Alt text"
+          }
+        ],
+        "name": "image",
+        "type": "image",
+        "title": "Cover Image"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "uri",
+                "constraint": {
+                  "options": {
+                    "scheme": [
+                      "/^http$/",
+                      "/^https$/"
+                    ],
+                    "allowRelative": false,
+                    "relativeOnly": false,
+                    "allowCredentials": false
+                  }
+                }
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "description": "Optional link to the item on an external store (Etsy, etc.)",
+        "name": "etsyUrl",
+        "type": "url",
+        "title": "External Link (optional)"
+      },
+      {
+        "options": {
+          "source": "name",
+          "maxLength": 96
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "custom"
+              },
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "description": "Generate a slug from the item label to publish a page (if needed)",
+        "name": "slug",
+        "type": "slug",
+        "title": "URL Slug"
+      }
+    ],
+    "name": "shopItem",
+    "type": "document"
+  },
+  {
+    "fields": [
+      {
+        "options": {
+          "list": [
+            {
+              "title": "Digital Art",
+              "value": "Digital Art"
+            },
+            {
+              "title": "Keychains",
+              "value": "Keychains"
+            },
+            {
+              "title": "Art Prints",
+              "value": "Art Prints"
+            },
+            {
+              "title": "Enamel Pins",
+              "value": "Enamel Pins"
+            }
+          ],
+          "layout": "dropdown"
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "valid",
+                "constraint": [
+                  "Digital Art",
+                  "Keychains",
+                  "Art Prints",
+                  "Enamel Pins"
+                ]
+              },
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "description": "Select from existing or type to add a new shop category",
+        "name": "name",
+        "type": "string",
+        "title": "Category Name"
+      },
+      {
+        "options": {
+          "source": "name",
+          "maxLength": 96
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "custom"
+              },
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "description": "Click generate to create the URL slug from the name",
+        "name": "slug",
+        "type": "slug",
+        "title": "URL Slug"
+      },
+      {
+        "rows": 3,
+        "placeholder": "e.g., Physical keychains and charms, Digital artwork downloads, etc.",
+        "description": "What type of items go in this category?",
+        "name": "description",
+        "type": "text"
+      },
+      {
+        "options": {
+          "hotspot": true,
+          "metadata": [
+            "blurhash",
+            "lqip",
+            "palette"
+          ],
+          "storeOriginalFilename": false
+        },
+        "description": "Optional image to represent this category",
+        "fields": [
+          {
+            "placeholder": "Category image description...",
+            "description": "Briefly describe this category image",
+            "name": "alt",
+            "type": "string",
+            "title": "Alt text (for accessibility)"
+          }
+        ],
+        "name": "image",
+        "type": "image",
+        "title": "Category Image (Optional)"
+      },
+      {
+        "initialValue": 0,
+        "description": "Lower numbers appear first in category lists",
+        "name": "sortOrder",
+        "type": "number"
+      },
+      {
+        "initialValue": true,
+        "description": "Turn this off to hide the category (and its items) from your website",
+        "name": "isActive",
+        "type": "boolean",
+        "title": "Active Category"
+      }
+    ],
+    "name": "shopCategory",
+    "type": "document",
+    "title": "Shop Categories"
   }
 ]

@@ -14,7 +14,7 @@ export default async function ContactPage() {
     <div className="max-w-2xl mx-auto text-center animate-fade-in">
       <h1 className="text-4xl font-headline md:text-5xl text-primary mb-8">CONTACT</h1>
       <p className="text-lg text-muted-foreground mb-12">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        Feel free to send me an email about commissions, collaborations, events, or just to say hi!
       </p>
       <Card>
         <CardContent className="p-8 flex flex-col items-center gap-8">

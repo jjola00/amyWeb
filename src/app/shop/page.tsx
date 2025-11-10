@@ -1,5 +1,5 @@
 import { InfiniteScroller } from '@/components/shop/infinite-scroller';
-import { getShopItems } from '@/lib/shop-items';
+import { getShopItemsLegacyFormat } from '@/lib/sanity-shop';
 import { Button } from '@/components/ui/button';
 import { EtsyIcon } from '@/components/icons';
 import Link from 'next/link';
@@ -7,8 +7,8 @@ import { Card } from '@/components/ui/card';
 import { loadSiteSettings } from '@/lib/content';
 
 export default async function ShopPage() {
-  // Get shop items from new content structure
-  const shopItems = await getShopItems();
+  // Get shop items from Sanity CMS
+  const shopItems = await getShopItemsLegacyFormat();
   const settings = await loadSiteSettings();
   const etsyUrl = settings.socialLinks?.etsy;
   const etsyItems = shopItems.filter(item => item.store === 'Etsy');
@@ -32,7 +32,7 @@ export default async function ShopPage() {
       <div className="text-center max-w-3xl mx-auto space-y-8">
         <h1 className="text-4xl font-headline md:text-5xl text-primary">SHOP</h1>
         <p className="text-lg text-muted-foreground">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Find my work on Etsy.
+          Find some of my work on Etsy.
         </p>
         <div className="flex justify-center">
           <Card className="hover:border-primary transition-colors duration-300 w-full max-w-md">

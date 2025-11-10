@@ -184,3 +184,103 @@ export const getEventBySlug = async (slug: string) => {
     }
   `, { slug })
 }
+
+// Shop queries with image optimization metadata
+export const getShopItems = async () => {
+  return await sanityClient.fetch(`
+    *[_type == "shopItem"] | order(name asc) {
+      _id,
+      name,
+      slug,
+      etsyUrl,
+      image {
+        asset->{
+          _id,
+          url,
+          metadata {
+            dimensions,
+            lqip,
+            blurHash,
+            palette
+          }
+        },
+        alt
+      }
+    }
+  `)
+}
+
+export const getShopItemsByCategory = async (categorySlug: string) => {
+  // shopItem no longer references categories in the simplified CMS.
+  // Return all shop items and ignore category filter (keeps API compatibility).
+  return await sanityClient.fetch(`
+    *[_type == "shopItem"] | order(name asc) {
+      _id,
+      name,
+      slug,
+      etsyUrl,
+      image {
+        asset->{
+          _id,
+          url,
+          metadata {
+            dimensions,
+            lqip,
+            blurHash,
+            palette
+          }
+        },
+        alt
+      }
+    }
+  `)
+}
+
+export const getShopCategories = async () => {
+  return await sanityClient.fetch(`
+    *[_type == "shopCategory" && isActive == true] | order(sortOrder asc, name asc) {
+      _id,
+      name,
+      slug,
+      description,
+      sortOrder,
+      image {
+        asset->{
+          _id,
+          url,
+          metadata {
+            dimensions,
+            lqip,
+            blurHash,
+            palette
+          }
+        },
+        alt
+      }
+    }
+  `)
+}
+
+export const getShopItemBySlug = async (slug: string) => {
+  return await sanityClient.fetch(`
+    *[_type == "shopItem" && slug.current == $slug][0] {
+      _id,
+      name,
+      slug,
+      etsyUrl,
+      image {
+        asset->{
+          _id,
+          url,
+          metadata {
+            dimensions,
+            lqip,
+            blurHash,
+            palette
+          }
+        },
+        alt
+      }
+    }
+  `, { slug })
+}

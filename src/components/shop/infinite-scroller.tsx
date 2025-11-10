@@ -24,10 +24,12 @@ export function InfiniteScroller({ items, direction = 'left' }: InfiniteScroller
                 
                 allItems.forEach((item, index) => {
                     const link = document.createElement('a');
-                    link.href = "#";
+                    link.href = item.etsyUrl || "#";
                     link.className = "group w-64 mx-4";
-                    link.target = "_blank";
-                    link.rel = "noopener noreferrer";
+                    if (item.etsyUrl) {
+                        link.target = "_blank";
+                        link.rel = "noopener noreferrer";
+                    }
 
                     const divOuter = document.createElement('div');
                     divOuter.className = "relative overflow-hidden rounded-lg shadow-lg border border-border/40 transition-all duration-300 group-hover:shadow-primary/20 group-hover:border-primary group-hover:-translate-y-2";
