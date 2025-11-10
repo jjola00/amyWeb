@@ -49,7 +49,6 @@ export interface Category {
   name: string
   slug: SanitySlug
   description?: string
-  artworkCount?: number
 }
 
 export interface Artwork {
@@ -67,34 +66,25 @@ export interface Artwork {
           height: number
         }
         lqip?: string
+        blurHash?: string
+        palette?: any
       }
     }
     alt: string
   }
-  additionalImages?: Array<{
-    asset: {
-      _id: string
-      url: string
-      metadata?: {
-        dimensions?: {
-          width: number
-          height: number
-        }
-      }
-    }
-    alt: string
-  }>
-  dimensions?: string
-  medium?: string
-  yearCreated?: number
-  price?: number
-  available: boolean
-  featured: boolean
   category?: Category
-  seo?: {
-    metaTitle?: string
-    metaDescription?: string
-  }
+}
+
+export interface Event {
+  _id: string
+  name: string
+  slug: SanitySlug
+  date: string // ISO date string
+  location: string
+  status: 'upcoming' | 'planned' | 'completed' | 'cancelled'
+  description?: string
+  featured: boolean
+  externalLink?: string
 }
 
 export interface BlogPost {

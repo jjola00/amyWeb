@@ -119,3 +119,68 @@ export const getAboutPage = async () => {
     }
   `)
 }
+
+// Event queries
+export const getEvents = async () => {
+  return await sanityClient.fetch(`
+    *[_type == "event"] | order(date asc) {
+      _id,
+      name,
+      slug,
+      date,
+      location,
+      status,
+      description,
+      featured,
+      externalLink
+    }
+  `)
+}
+
+export const getUpcomingEvents = async () => {
+  return await sanityClient.fetch(`
+    *[_type == "event" && status in ["upcoming", "planned"] && date >= now()] | order(date asc) {
+      _id,
+      name,
+      slug,
+      date,
+      location,
+      status,
+      description,
+      featured,
+      externalLink
+    }
+  `)
+}
+
+export const getFeaturedEvents = async () => {
+  return await sanityClient.fetch(`
+    *[_type == "event" && featured == true && date >= now()] | order(date asc) {
+      _id,
+      name,
+      slug,
+      date,
+      location,
+      status,
+      description,
+      featured,
+      externalLink
+    }
+  `)
+}
+
+export const getEventBySlug = async (slug: string) => {
+  return await sanityClient.fetch(`
+    *[_type == "event" && slug.current == $slug][0] {
+      _id,
+      name,
+      slug,
+      date,
+      location,
+      status,
+      description,
+      featured,
+      externalLink
+    }
+  `, { slug })
+}

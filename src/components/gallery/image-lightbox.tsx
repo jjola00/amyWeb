@@ -37,24 +37,9 @@ export function ImageLightbox({ artwork, onOpenChange }: ImageLightboxProps) {
                 {artwork.category && (
                   <Badge variant="secondary">{artwork.category.name}</Badge>
                 )}
-                {artwork.medium && (
+                {artwork.description && (
                   <div className="text-sm text-muted-foreground">
-                    <span className="font-medium">Medium:</span> {artwork.medium}
-                  </div>
-                )}
-                {artwork.dimensions && (
-                  <div className="text-sm text-muted-foreground">
-                    <span className="font-medium">Dimensions:</span> {artwork.dimensions}
-                  </div>
-                )}
-                {artwork.yearCreated && (
-                  <div className="text-sm text-muted-foreground">
-                    <span className="font-medium">Year:</span> {artwork.yearCreated}
-                  </div>
-                )}
-                {artwork.price && artwork.available && (
-                  <div className="text-lg font-medium text-accent mt-4">
-                    ${artwork.price}
+                    <p>{artwork.description}</p>
                   </div>
                 )}
               </div>
