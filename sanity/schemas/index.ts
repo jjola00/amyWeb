@@ -1,7 +1,6 @@
 import artwork from './artwork'
 import category from './category'
-import page from './page'
-import settings from './settings'
-import blog from './blog'
+import about from './about'
+import categoryManager from './categoryManager'
 
-export const schemaTypes = [artwork, category, page, settings, blog]
+export const schemaTypes = [categoryManager, artwork, category, about]

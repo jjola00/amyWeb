@@ -1,44 +1,56 @@
 import { defineField, defineType } from 'sanity'
 
+// Import the predefined categories from your shared constants
+import { ARTWORK_CATEGORIES, getCategoryOptions } from '../../src/lib/constants'
+
 export default defineType({
   name: 'category',
-  title: 'Art Category',
+  title: 'Art Categories',
   type: 'document',
   icon: () => '🏷️',
   fields: [
     defineField({
-      name: 'title',
+      name: 'name',
       title: 'Category Name',
       type: 'string',
-      validation: (Rule) => Rule.required().min(1).max(50),
+      validation: (Rule) => Rule.required(),
+      description: 'Select from existing or type to add a new category',
+      options: {
+        list: getCategoryOptions(),
+        layout: 'dropdown'
+      },
     }),
     defineField({
       name: 'slug',
-      title: 'Slug',
+      title: 'URL Slug',
       type: 'slug',
       options: {
-        source: 'title',
+        source: 'name',
         maxLength: 96,
       },
       validation: (Rule) => Rule.required(),
+      description: 'Click generate to create the URL slug from the name',
     }),
     defineField({
       name: 'description',
-      title: 'Description',
+      title: 'Description (Optional)',
       type: 'text',
-      rows: 3,
-    }),
-    defineField({
-      name: 'color',
-      title: 'Theme Color',
-      type: 'color',
-      description: 'Color to represent this category in the UI',
+      rows: 2,
+      description: 'What type of art goes in this category? (optional)',
+      placeholder: 'e.g., Digital illustrations, hand-drawn artwork, character designs...',
     }),
   ],
+  
   preview: {
     select: {
-      title: 'title',
+      title: 'name',
       subtitle: 'description',
+    },
+    prepare({ title, subtitle }) {
+      return {
+        title: title || 'Untitled Category',
+        subtitle: subtitle || 'No description',
+      }
     },
   },
 })

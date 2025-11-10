@@ -1,10 +1,10 @@
 import Image from 'next/image';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { getSiteSettings } from '@/lib/sanity-queries';
+import { getAboutPage } from '@/lib/sanity-queries';
 
 export default async function AboutPage() {
-    const settings = await getSiteSettings();
+    const aboutData = await getAboutPage();
     
     return (
         <div className="max-w-4xl mx-auto animate-fade-in">
@@ -12,10 +12,10 @@ export default async function AboutPage() {
             <Card className="overflow-hidden shadow-lg border-border/60">
                 <div className="md:grid md:grid-cols-3 md:items-start">
                     <div className="md:col-span-1">
-                        {settings?.artistPhoto ? (
+                        {aboutData?.artistPhoto ? (
                             <Image
-                                src={settings.artistPhoto.asset.url}
-                                alt={settings.artistPhoto.alt || "Artist photo"}
+                                src={aboutData.artistPhoto.asset.url}
+                                alt={aboutData.artistPhoto.alt || "Artist photo"}
                                 width={400}
                                 height={400}
                                 className="object-cover w-full h-auto md:h-full"
@@ -30,18 +30,19 @@ export default async function AboutPage() {
                     <div className="md:col-span-2 p-6 md:p-8">
                         <CardHeader className="p-0">
                             <CardTitle className="font-headline text-4xl text-accent">
-                                {settings?.artistName || 'Beetlehead'}
+                                {aboutData?.artistName || 'Beetlehead'}
                             </CardTitle>
                             <div className="text-muted-foreground pt-2 flex flex-wrap gap-2">
                                 <Badge variant="secondary">She/They</Badge>
-                                <Badge variant="secondary">Dublin, Ireland</Badge>
+                                {aboutData?.location && (
+                                    <Badge variant="secondary">{aboutData.location}</Badge>
+                                )}
                             </div>
                         </CardHeader>
                         <CardContent className="p-0 mt-6 space-y-4 text-lg/relaxed">
-                            {settings?.artistBio ? (
-                                <div>
-                                    {/* We'll need to render the rich text bio here - for now, placeholder */}
-                                    <p>Artist bio will be displayed here from Sanity CMS.</p>
+                            {aboutData?.artistBio ? (
+                                <div className="whitespace-pre-line">
+                                    {aboutData.artistBio}
                                 </div>
                             ) : (
                                 <>

@@ -7,6 +7,7 @@ import { FilterControls } from './filter-controls';
 import { ImageLightbox } from './image-lightbox';
 import { Card, CardContent } from '@/components/ui/card';
 import { AnimatePresence, motion } from 'framer-motion';
+import { imagePresets, getBlurDataURL } from '@/lib/sanityImageUrl';
 
 export function ArtworkGrid({ artworks }: { artworks: Artwork[] }) {
   const [activeFilter, setActiveFilter] = useState<string>('All');
@@ -42,12 +43,15 @@ export function ArtworkGrid({ artworks }: { artworks: Artwork[] }) {
                 <CardContent className="p-0">
                   <div className="relative">
                     <Image
-                      src={art.image.asset.url}
+                      src={imagePresets.card(art.image).url()}
                       alt={art.image.alt}
-                      width={art.image.asset.metadata?.dimensions?.width || 400}
-                      height={art.image.asset.metadata?.dimensions?.height || 400}
+                      width={600}
+                      height={800}
                       className="w-full h-auto transition-transform duration-300 ease-in-out group-hover:scale-105"
                       priority={index < 8}
+                      placeholder={getBlurDataURL(art.image) ? "blur" : "empty"}
+                      blurDataURL={getBlurDataURL(art.image)}
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     />
                     <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                       <p className="text-white text-lg font-headline p-4 text-center">{art.title}</p>

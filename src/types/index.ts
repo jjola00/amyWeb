@@ -1,3 +1,6 @@
+// Import shared constants
+import { ARTWORK_CATEGORIES, type ArtworkCategory as SharedArtworkCategory } from '@/lib/constants'
+
 // Sanity types
 export interface SanityImage {
   _id: string
@@ -197,7 +200,7 @@ export interface SiteSettings {
 }
 
 // Legacy types (for backwards compatibility during migration)
-export type ArtworkCategory = 'Digital Fanart' | 'Digital Original Art' | 'Traditional Original Art' | 'Mascot' | 'Commissions' | 'Sketches' | 'Comics'
+export type ArtworkCategory = SharedArtworkCategory
 
 export interface ShopItem {
   id: string
@@ -206,3 +209,6 @@ export interface ShopItem {
   imageHint: string
   store: 'Etsy'
 }
+
+// Export the categories array for use in components
+export { ARTWORK_CATEGORIES } from '@/lib/constants'

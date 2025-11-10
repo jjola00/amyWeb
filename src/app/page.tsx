@@ -1,8 +1,8 @@
-import { getFeaturedArtworks } from "@/lib/sanity-queries";
+import { getArtworks } from "@/lib/sanity-queries";
 import { ArtworkGrid } from "@/components/gallery/artwork-grid";
 
 export default async function GalleryPage() {
-  const featuredArtworks = await getFeaturedArtworks();
+  const artworks = await getArtworks();
   
   return (
     <div className="space-y-8">
@@ -10,7 +10,7 @@ export default async function GalleryPage() {
         <h1 className="text-4xl font-headline md:text-5xl text-primary">GALLERY</h1>
         <p className="mt-4 text-lg text-muted-foreground">A collection of my recent work. Click on any image to see more.</p>
       </div>
-      <ArtworkGrid artworks={featuredArtworks} />
+      <ArtworkGrid artworks={artworks} />
     </div>
   );
 }

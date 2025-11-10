@@ -6,10 +6,9 @@ import { imageHotspotArrayPlugin } from 'sanity-plugin-hotspot-array'
 
 // Import schemas
 import artwork from './sanity/schemas/artwork'
-import page from './sanity/schemas/page'
-import settings from './sanity/schemas/settings'
 import category from './sanity/schemas/category'
-import blog from './sanity/schemas/blog'
+import about from './sanity/schemas/about'
+import categoryManager from './sanity/schemas/categoryManager'
 
 const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || '67ufanvv'
 const dataset = process.env.NEXT_PUBLIC_SANITY_DATASET || 'production'
@@ -26,32 +25,33 @@ export default defineConfig({
         S.list()
           .title('Content')
           .items([
-            // Settings (singleton)
+            // Setup Tool - Make it prominent
             S.listItem()
-              .title('Site Settings')
-              .child(S.document().schemaType('settings').documentId('settings')),
+              .title('🚀 Setup Categories')
+              .child(
+                S.document()
+                  .schemaType('categoryManager')
+                  .documentId('setup')
+              ),
+            
+            S.divider(),
+            
+            // About Page (singleton)
+            S.listItem()
+              .title('About Page')
+              .child(S.document().schemaType('aboutPage').documentId('about')),
             
             S.divider(),
             
             // Artworks
             S.listItem()
-              .title('Artworks')
+              .title('🎨 Artworks')
               .child(S.documentTypeList('artwork')),
             
             // Art Categories
             S.listItem()
-              .title('Art Categories')
+              .title('🏷️ Art Categories')
               .child(S.documentTypeList('category')),
-            
-            // Pages
-            S.listItem()
-              .title('Pages')
-              .child(S.documentTypeList('page')),
-            
-            // Blog Posts
-            S.listItem()
-              .title('Blog Posts')
-              .child(S.documentTypeList('blog')),
           ]),
     }),
     visionTool(),
@@ -60,6 +60,6 @@ export default defineConfig({
   ],
   
   schema: {
-    types: [artwork, page, settings, category, blog],
+    types: [categoryManager, artwork, category, about],
   },
 })

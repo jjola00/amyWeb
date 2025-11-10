@@ -4,6 +4,7 @@ import Image from 'next/image';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '@/components/ui/dialog';
 import type { Artwork } from '@/types';
 import { Badge } from '../ui/badge';
+import { imagePresets, getBlurDataURL } from '@/lib/sanityImageUrl';
 
 interface ImageLightboxProps {
   artwork: Artwork | null;
@@ -18,10 +19,13 @@ export function ImageLightbox({ artwork, onOpenChange }: ImageLightboxProps) {
           <div className="grid md:grid-cols-2">
             <div className="relative min-h-[50vh] md:min-h-0">
               <Image
-                src={artwork.image.asset.url}
+                src={imagePresets.fullsize(artwork.image).url()}
                 alt={artwork.image.alt}
                 fill
                 className="object-contain rounded-t-lg md:rounded-l-lg md:rounded-t-none"
+                placeholder={getBlurDataURL(artwork.image) ? "blur" : "empty"}
+                blurDataURL={getBlurDataURL(artwork.image)}
+                sizes="(max-width: 768px) 100vw, 50vw"
               />
             </div>
             <div className="p-6 flex flex-col">
