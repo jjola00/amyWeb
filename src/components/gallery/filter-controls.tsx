@@ -2,12 +2,11 @@
 
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import type { ArtworkCategory } from "@/types";
 
 interface FilterControlsProps {
-  categories: ['All', ...ArtworkCategory[]];
-  activeFilter: 'All' | ArtworkCategory;
-  onFilterChange: (category: 'All' | ArtworkCategory) => void;
+  categories: string[];
+  activeFilter: string;
+  onFilterChange: (category: string) => void;
 }
 
 export function FilterControls({ categories, activeFilter, onFilterChange }: FilterControlsProps) {

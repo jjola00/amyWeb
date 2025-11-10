@@ -2,21 +2,22 @@
 
 import { useState } from 'react';
 import Image from 'next/image';
-import type { Artwork, ArtworkCategory } from '@/types';
+import type { Artwork, Category } from '@/types';
 import { FilterControls } from './filter-controls';
 import { ImageLightbox } from './image-lightbox';
 import { Card, CardContent } from '@/components/ui/card';
 import { AnimatePresence, motion } from 'framer-motion';
 
-const categories: ['All', ...ArtworkCategory[]] = ['All', 'Digital Fanart', 'Digital Original Art', 'Traditional Original Art', 'Mascot', 'Commissions', 'Sketches', 'Comics'];
-
 export function ArtworkGrid({ artworks }: { artworks: Artwork[] }) {
-  const [activeFilter, setActiveFilter] = useState<typeof categories[number]>('All');
+  const [activeFilter, setActiveFilter] = useState<string>('All');
   const [selectedImage, setSelectedImage] = useState<Artwork | null>(null);
 
+  // Extract unique categories from artworks
+  const categories = ['All', ...Array.from(new Set(artworks.map(art => art.category?.name).filter(Boolean)))];
+
   const filteredArtworks = activeFilter === 'All'
-    ? artworks.filter(art => art.id !== 'profile-pic')
-    : artworks.filter(art => art.category === activeFilter && art.id !== 'profile-pic');
+    ? artworks
+    : artworks.filter(art => art.category?.name === activeFilter);
 
   return (
     <>
@@ -26,7 +27,7 @@ export function ArtworkGrid({ artworks }: { artworks: Artwork[] }) {
         <AnimatePresence>
           {filteredArtworks.map((art, index) => (
             <motion.div
-              key={art.id}
+              key={art._id}
               layout
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
@@ -41,12 +42,11 @@ export function ArtworkGrid({ artworks }: { artworks: Artwork[] }) {
                 <CardContent className="p-0">
                   <div className="relative">
                     <Image
-                      src={art.imageUrl}
-                      alt={art.title}
-                      width={art.width}
-                      height={art.height}
+                      src={art.image.asset.url}
+                      alt={art.image.alt}
+                      width={art.image.asset.metadata?.dimensions?.width || 400}
+                      height={art.image.asset.metadata?.dimensions?.height || 400}
                       className="w-full h-auto transition-transform duration-300 ease-in-out group-hover:scale-105"
-                      data-ai-hint={art.imageHint}
                       priority={index < 8}
                     />
                     <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">

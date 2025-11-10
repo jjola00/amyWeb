@@ -1,5 +1,4 @@
 import type {NextConfig} from 'next';
-import { withPayload } from '@payloadcms/next/withPayload';
 
 // Bundle analyzer setup
 const withBundleAnalyzer = require('@next/bundle-analyzer')({
@@ -25,9 +24,6 @@ const nextConfig: NextConfig = {
   
   // External packages for server components - only essential packages
   serverExternalPackages: [
-    'mongoose', 
-    'payload', 
-    '@payloadcms/db-mongodb',
     'sharp'
   ],
   
@@ -35,31 +31,6 @@ const nextConfig: NextConfig = {
   experimental: {
     optimizePackageImports: ['lucide-react', '@radix-ui/react-icons'],
     // optimizeCss: true, // Disabled due to critters module issue
-  },
-  
-  // Turbopack configuration (moved from experimental)
-  turbopack: {
-    rules: {
-      '*.svg': {
-        loaders: ['@svgr/webpack'],
-        as: '*.js',
-      },
-    },
-  },
-  
-  // Webpack configuration for Payload CMS compatibility
-  webpack: (config, { isServer }) => {
-    // Add support for Monaco editor in Payload CMS
-    if (!isServer) {
-      config.resolve.fallback = {
-        ...config.resolve.fallback,
-        fs: false,
-        path: false,
-        os: false,
-      }
-    }
-    
-    return config
   },
   
   // Type checking and linting
@@ -92,6 +63,11 @@ const nextConfig: NextConfig = {
       {
         protocol: 'https',
         hostname: 'picsum.photos',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'cdn.sanity.io',
         pathname: '/**',
       },
     ],
@@ -132,4 +108,4 @@ const nextConfig: NextConfig = {
   },
 };
 
-export default withPayload(withBundleAnalyzer(nextConfig));
+export default withBundleAnalyzer(nextConfig);

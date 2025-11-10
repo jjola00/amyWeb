@@ -1,20 +1,208 @@
-export type ArtworkCategory = 'Digital Fanart' | 'Digital Original Art' | 'Traditional Original Art' | 'Mascot' | 'Commissions' | 'Sketches' | 'Comics';
-
-export interface Artwork {
-  id: string;
-  title: string;
-  imageUrl: string;
-  category: ArtworkCategory;
-  description: string;
-  imageHint: string;
-  width: number;
-  height: number;
+// Sanity types
+export interface SanityImage {
+  _id: string
+  url: string
+  alt: string
+  metadata?: {
+    dimensions?: {
+      width: number
+      height: number
+    }
+    lqip?: string
+  }
 }
 
+export interface SanitySlug {
+  current: string
+  _type: 'slug'
+}
+
+export interface SanityReference {
+  _id: string
+  _type: 'reference'
+  _ref: string
+}
+
+export interface SanityBlock {
+  _type: 'block'
+  children: Array<{
+    _type: 'span'
+    text: string
+    marks?: string[]
+  }>
+  markDefs?: Array<{
+    _type: string
+    _key: string
+    [key: string]: any
+  }>
+  style?: string
+  listItem?: string
+  level?: number
+}
+
+// Main content types
+export interface Category {
+  _id: string
+  name: string
+  slug: SanitySlug
+  description?: string
+  artworkCount?: number
+}
+
+export interface Artwork {
+  _id: string
+  title: string
+  slug: SanitySlug
+  description?: string
+  image: {
+    asset: {
+      _id: string
+      url: string
+      metadata?: {
+        dimensions?: {
+          width: number
+          height: number
+        }
+        lqip?: string
+      }
+    }
+    alt: string
+  }
+  additionalImages?: Array<{
+    asset: {
+      _id: string
+      url: string
+      metadata?: {
+        dimensions?: {
+          width: number
+          height: number
+        }
+      }
+    }
+    alt: string
+  }>
+  dimensions?: string
+  medium?: string
+  yearCreated?: number
+  price?: number
+  available: boolean
+  featured: boolean
+  category?: Category
+  seo?: {
+    metaTitle?: string
+    metaDescription?: string
+  }
+}
+
+export interface BlogPost {
+  _id: string
+  title: string
+  slug: SanitySlug
+  excerpt?: string
+  featuredImage?: {
+    asset: {
+      _id: string
+      url: string
+      metadata?: {
+        dimensions?: {
+          width: number
+          height: number
+        }
+        lqip?: string
+      }
+    }
+    alt: string
+  }
+  content: Array<SanityBlock | {
+    _type: 'image'
+    asset: {
+      _id: string
+      url: string
+    }
+    alt: string
+    caption?: string
+  }>
+  categories?: Category[]
+  tags?: string[]
+  publishedAt: string
+  author: string
+  featured: boolean
+  relatedArtworks?: Artwork[]
+  seo?: {
+    metaTitle?: string
+    metaDescription?: string
+  }
+}
+
+export interface Page {
+  _id: string
+  title: string
+  slug: SanitySlug
+  content: Array<SanityBlock>
+  seo?: {
+    metaTitle?: string
+    metaDescription?: string
+  }
+}
+
+export interface SiteSettings {
+  _id: string
+  siteTitle: string
+  siteDescription?: string
+  artistName: string
+  artistBio?: Array<SanityBlock>
+  artistPhoto?: {
+    asset: {
+      _id: string
+      url: string
+    }
+    alt: string
+  }
+  socialLinks?: {
+    instagram?: string
+    facebook?: string
+    twitter?: string
+    website?: string
+    email?: string
+    phone?: string
+  }
+  contactInfo?: {
+    email: string
+    phone?: string
+    address?: string
+    hours?: string
+  }
+  seo?: {
+    metaTitle?: string
+    metaDescription?: string
+    ogImage?: {
+      asset: {
+        _id: string
+        url: string
+      }
+    }
+    favicon?: {
+      asset: {
+        _id: string
+        url: string
+      }
+    }
+  }
+  features?: {
+    showPrices?: boolean
+    enableCommissions?: boolean
+    enableBlog?: boolean
+    enableShop?: boolean
+  }
+}
+
+// Legacy types (for backwards compatibility during migration)
+export type ArtworkCategory = 'Digital Fanart' | 'Digital Original Art' | 'Traditional Original Art' | 'Mascot' | 'Commissions' | 'Sketches' | 'Comics'
+
 export interface ShopItem {
-  id: string;
-  name: string;
-  imageUrl: string;
-  imageHint: string;
-  store: 'Etsy';
+  id: string
+  name: string
+  imageUrl: string
+  imageHint: string
+  store: 'Etsy'
 }
