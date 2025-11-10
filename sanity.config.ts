@@ -47,28 +47,6 @@ export default defineConfig({
     types: [artwork, category, about],
   },
   
-  // 🔒 SECURITY: Authentication configuration
-  auth: {
-    // Use Sanity's built-in authentication
-    mode: 'replace',
-    providers: [
-      {
-        name: 'sanity',
-        title: 'Login with Sanity',
-        url: 'https://api.sanity.io/v2021-10-21/auth/login',
-      }
-    ]
-  },
-  
-  // 🔒 SECURITY: Document access control
-  document: {
-    // Custom document actions (optional)
-    actions: (prev, context) => {
-      // Only allow certain actions for authenticated users
-      if (context.currentUser) {
-        return prev
-      }
-      return []
-    }
-  }
+  // 🔒 SECURITY: Studio authentication is handled by Sanity's built-in system
+  // Users must be authenticated via Sanity to access the studio
 })

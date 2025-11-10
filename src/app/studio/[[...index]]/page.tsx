@@ -9,24 +9,11 @@
 import { NextStudio } from 'next-sanity/studio'
 import config from '../../../../sanity.config'
 
-// 🔒 Security: Configure the studio with authentication
-const studioConfig = {
-  ...config,
-  basePath: '/studio',
-  
-  // Additional security options
-  auth: {
-    ...config.auth,
-    // Redirect after login
-    loginMethod: 'dual', // Support both popup and redirect
-  }
-}
-
 export default function StudioPage() {
   return (
     <div style={{ height: '100vh' }}>
       <NextStudio 
-        config={studioConfig}
+        config={config}
         // 🔒 Security: Studio will handle authentication automatically
       />
     </div>
