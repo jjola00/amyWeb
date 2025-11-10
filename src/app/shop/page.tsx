@@ -30,7 +30,7 @@ export default async function ShopPage() {
       </div>
 
       <div className="text-center max-w-3xl mx-auto space-y-8">
-        <h1 className="text-4xl font-headline md:text-5xl text-primary">SHOP</h1>
+        <h1 className="text-4xl font-headline md:text-6xl text-primary">SHOP</h1>
         <p className="text-lg text-muted-foreground">
           Find some of my work on Etsy.
         </p>

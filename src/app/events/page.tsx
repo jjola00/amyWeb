@@ -67,7 +67,7 @@ export default async function EventsPage() {
     return (
         <div className="max-w-6xl mx-auto animate-fade-in">
             <div className="text-center mb-12">
-                <h1 className="text-4xl font-headline md:text-5xl text-center text-primary mb-4">EVENTS</h1>
+                <h1 className="text-4xl font-headline md:text-6xl text-center text-primary mb-4">EVENTS</h1>
                 <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
                     Some events I'm heading to
                 </p>

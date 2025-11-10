@@ -12,7 +12,7 @@ export default async function ContactPage() {
 
   return (
     <div className="max-w-2xl mx-auto text-center animate-fade-in">
-      <h1 className="text-4xl font-headline md:text-5xl text-primary mb-8">CONTACT</h1>
+      <h1 className="text-4xl font-headline md:text-6xl text-primary mb-8">CONTACT</h1>
       <p className="text-lg text-muted-foreground mb-12">
         Feel free to send me an email about commissions, collaborations, events, or just to say hi!
       </p>

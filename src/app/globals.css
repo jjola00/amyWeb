@@ -51,6 +51,13 @@
   }
 }
 
+@layer components {
+  .font-headline {
+    letter-spacing: 0.05em; /* Add spacing between letters */
+    word-spacing: 0.1em;    /* Add spacing between words */
+  }
+}
+
 @keyframes fadeIn {
   from {
     opacity: 0;
