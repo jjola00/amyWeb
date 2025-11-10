@@ -52,12 +52,13 @@ export const SiteSettingsSchema = z.object({
   siteDescription: z.string().min(1, 'Site description is required'),
   artistName: z.string().min(1, 'Artist name is required'),
   artistBio: z.string().min(1, 'Artist bio is required'),
-  contactEmail: z.string().email('Must be a valid email').optional(),
+  contactEmail: z.string().email('Must be a valid email').or(z.literal('')).optional(),
   socialLinks: z.object({
     instagram: z.string().optional(),
     tiktok: z.string().optional(),
     tumblr: z.string().optional(),
-    etsy: z.string().optional()
+    etsy: z.string().optional(),
+    linktree: z.string().optional()
   })
 });
 

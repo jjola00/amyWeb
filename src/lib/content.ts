@@ -113,6 +113,7 @@ export async function loadSiteSettings(): Promise<SiteSettings> {
       siteDescription: 'Digital and traditional art portfolio',
       artistName: 'Artist',
       artistBio: 'Artist bio not available.',
+      contactEmail: '',
       socialLinks: {}
     };
   }

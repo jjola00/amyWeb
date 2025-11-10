@@ -168,6 +168,10 @@ export interface SiteSettings {
     website?: string
     email?: string
     phone?: string
+    linktree?: string
+    tiktok?: string
+    tumblr?: string
+    etsy?: string
   }
   contactInfo?: {
     email: string

@@ -1,7 +1,11 @@
 import Link from "next/link";
 import { LinktreeIcon } from "@/components/icons";
+import { loadSiteSettings } from "@/lib/content";
 
-export function Footer() {
+export async function Footer() {
+  const settings = await loadSiteSettings();
+  const linktreeUrl = settings.socialLinks?.linktree;
+
   return (
     <footer className="border-t border-border/40 bg-background/95">
       <div className="container mx-auto flex flex-col items-center justify-between gap-4 py-6 md:flex-row">
@@ -9,12 +13,14 @@ export function Footer() {
           &copy; {new Date().getFullYear()} Beetlehead Designs. All rights reserved.
         </p>
         <div className="flex items-center gap-2">
-          <Link href="#" target="_blank" rel="noopener noreferrer">
-            <div className="w-10 h-10 rounded border border-border hover:border-primary transition-colors duration-300 flex items-center justify-center">
-              <LinktreeIcon className="h-5 w-5" />
-              <span className="sr-only">Linktree</span>
-            </div>
-          </Link>
+          {linktreeUrl && (
+            <Link href={linktreeUrl} target="_blank" rel="noopener noreferrer">
+              <div className="w-10 h-10 rounded border border-border hover:border-primary transition-colors duration-300 flex items-center justify-center">
+                <LinktreeIcon className="h-5 w-5" />
+                <span className="sr-only">Linktree</span>
+              </div>
+            </Link>
+          )}
         </div>
       </div>
     </footer>

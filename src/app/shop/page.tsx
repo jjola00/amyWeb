@@ -4,10 +4,13 @@ import { Button } from '@/components/ui/button';
 import { EtsyIcon } from '@/components/icons';
 import Link from 'next/link';
 import { Card } from '@/components/ui/card';
+import { loadSiteSettings } from '@/lib/content';
 
 export default async function ShopPage() {
   // Get shop items from new content structure
   const shopItems = await getShopItems();
+  const settings = await loadSiteSettings();
+  const etsyUrl = settings.socialLinks?.etsy;
   const etsyItems = shopItems.filter(item => item.store === 'Etsy');
   const topRowItems = etsyItems.slice(0, Math.ceil(etsyItems.length / 2));
   const bottomRowItems = etsyItems.slice(Math.ceil(etsyItems.length / 2));
@@ -33,7 +36,7 @@ export default async function ShopPage() {
         </p>
         <div className="flex justify-center">
           <Card className="hover:border-primary transition-colors duration-300 w-full max-w-md">
-            <Link href="#" target="_blank" rel="noopener noreferrer" className="block p-6 h-full">
+            <Link href={etsyUrl || "#"} target="_blank" rel="noopener noreferrer" className="block p-6 h-full">
               <div className="w-full h-40 text-2xl font-headline flex flex-col items-center justify-center gap-4 transition-colors duration-300">
                 <EtsyIcon className="w-40 h-40" />
               </div>
