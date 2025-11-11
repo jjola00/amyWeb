@@ -45,10 +45,14 @@ const nextConfig: NextConfig = {
   images: {
     formats: ['image/webp', 'image/avif'],
     deviceSizes: [640, 750, 828, 1080, 1200, 1920],
-    imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
-    minimumCacheTTL: 60 * 60 * 24 * 30, // 30 days cache
+    imageSizes: [16, 32, 48, 64, 96, 128, 256, 384, 512],
+    minimumCacheTTL: 60 * 60 * 24 * 365, // 1 year cache for better performance
     dangerouslyAllowSVG: true,
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
+    // Enable image optimization loader for better caching
+    loader: 'default',
+    // Optimize for gallery images
+    unoptimized: false,
     remotePatterns: [
       {
         protocol: 'https',
@@ -73,7 +77,7 @@ const nextConfig: NextConfig = {
     ],
   },
 
-  // Security headers
+  // Security headers and caching
   async headers() {
     return [
       {
@@ -90,6 +94,26 @@ const nextConfig: NextConfig = {
           {
             key: 'Referrer-Policy',
             value: 'origin-when-cross-origin',
+          },
+        ],
+      },
+      // Aggressive caching for images
+      {
+        source: '/_next/image(.*)',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=31536000, immutable',
+          },
+        ],
+      },
+      // Cache Sanity images
+      {
+        source: '/api/images/(.*)',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=31536000, stale-while-revalidate=86400',
           },
         ],
       },
