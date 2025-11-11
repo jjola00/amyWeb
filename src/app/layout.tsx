@@ -21,7 +21,7 @@ const playfairDisplay = Playfair_Display({
 });
 
 export const metadata: Metadata = {
-  title: "Beetlehead Portfolio",
+  title: "Beetlehead Designs",
   description: "Digital and traditional art portfolio featuring original artwork, fanart, commissions, and more.",
   keywords: ["art", "digital art", "traditional art", "portfolio", "commissions"],
   authors: [{ name: "Beetlehead" }],
