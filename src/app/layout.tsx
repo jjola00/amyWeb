@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, JetBrains_Mono, Chewy } from "next/font/google";
+import { Inter, JetBrains_Mono, Playfair_Display } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
@@ -15,9 +15,8 @@ const jetbrainsMono = JetBrains_Mono({
   variable: "--font-geist-mono",
 });
 
-const chewy = Chewy({
+const playfairDisplay = Playfair_Display({
   subsets: ["latin"],
-  weight: "400", // Chewy only has one weight
   variable: "--font-headline",
 });
 
@@ -52,7 +51,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${inter.variable} ${jetbrainsMono.variable} ${chewy.variable} antialiased min-h-screen bg-background font-sans flex flex-col`}
+        className={`${inter.variable} ${jetbrainsMono.variable} ${playfairDisplay.variable} antialiased min-h-screen bg-background font-sans flex flex-col`}
       >
         <Header />
         <main className="container mx-auto px-4 py-8 flex-1">

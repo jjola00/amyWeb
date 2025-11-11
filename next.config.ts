@@ -1,4 +1,4 @@
-import type {NextConfig} from 'next';
+import type { NextConfig } from 'next';
 
 // Bundle analyzer setup
 const withBundleAnalyzer = require('@next/bundle-analyzer')({
@@ -10,29 +10,29 @@ const nextConfig: NextConfig = {
   output: 'standalone',
   poweredByHeader: false,
   compress: true,
-  
+
   // Static generation and performance
   trailingSlash: false,
   generateEtags: false, // Disable ETags for better caching control
-  
+
   // Bundle optimization
   modularizeImports: {
     'lucide-react': {
       transform: 'lucide-react/dist/esm/icons/{{member}}',
     },
   },
-  
+
   // External packages for server components - only essential packages
   serverExternalPackages: [
     'sharp'
   ],
-  
+
   // Experimental features for performance and bundle optimization
   experimental: {
     optimizePackageImports: ['lucide-react', '@radix-ui/react-icons'],
     // optimizeCss: true, // Disabled due to critters module issue
   },
-  
+
   // Type checking and linting
   typescript: {
     ignoreBuildErrors: false, // Enable proper type checking now that errors are fixed
@@ -40,7 +40,7 @@ const nextConfig: NextConfig = {
   eslint: {
     ignoreDuringBuilds: false, // Enable linting for production builds
   },
-  
+
   // Image optimization - optimized for performance
   images: {
     formats: ['image/webp', 'image/avif'],
@@ -72,7 +72,7 @@ const nextConfig: NextConfig = {
       },
     ],
   },
-  
+
   // Security headers
   async headers() {
     return [
@@ -95,7 +95,7 @@ const nextConfig: NextConfig = {
       },
     ];
   },
-  
+
   // Redirects
   async redirects() {
     return [
