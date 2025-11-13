@@ -80,11 +80,45 @@ export interface Event {
   name: string
   slug: SanitySlug
   date: string // ISO date string
-  location: string
-  status: 'upcoming' | 'planned' | 'completed' | 'cancelled'
+  status: 'upcoming' | 'done'
   description?: string
   featured: boolean
   externalLink?: string
+  media?: Array<{
+    _type: 'image' | 'file'
+    _key: string
+    asset: {
+      _id: string
+      url: string
+      metadata?: {
+        dimensions?: {
+          width: number
+          height: number
+        }
+        lqip?: string
+        blurHash?: string
+        palette?: any
+      }
+    }
+    alt: string
+    caption?: string
+    // For video files
+    thumbnail?: {
+      asset: {
+        _id: string
+        url: string
+        metadata?: {
+          dimensions?: {
+            width: number
+            height: number
+          }
+          lqip?: string
+          blurHash?: string
+        }
+      }
+      alt?: string
+    }
+  }>
 }
 
 export interface BlogPost {

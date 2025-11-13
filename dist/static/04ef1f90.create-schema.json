@@ -351,30 +351,10 @@
             "level": "error"
           }
         ],
-        "description": "When the event takes place",
+        "description": "When the event takes place (date only)",
         "name": "date",
-        "type": "datetime",
+        "type": "date",
         "title": "Event Date"
-      },
-      {
-        "validation": [
-          {
-            "rules": [
-              {
-                "flag": "presence",
-                "constraint": "required"
-              },
-              {
-                "flag": "max",
-                "constraint": 200
-              }
-            ],
-            "level": "error"
-          }
-        ],
-        "description": "Where the event takes place (e.g., \"Downtown Gallery\", \"Convention Center Hall A\")",
-        "name": "location",
-        "type": "string"
       },
       {
         "options": {
@@ -384,21 +364,13 @@
               "value": "upcoming"
             },
             {
-              "title": "Planned",
-              "value": "planned"
-            },
-            {
-              "title": "Completed",
-              "value": "completed"
-            },
-            {
-              "title": "Cancelled",
-              "value": "cancelled"
+              "title": "Done",
+              "value": "done"
             }
           ],
           "layout": "radio"
         },
-        "initialValue": "planned",
+        "initialValue": "upcoming",
         "validation": [
           {
             "rules": [
@@ -406,9 +378,7 @@
                 "flag": "valid",
                 "constraint": [
                   "upcoming",
-                  "planned",
-                  "completed",
-                  "cancelled"
+                  "done"
                 ]
               },
               {
@@ -419,7 +389,7 @@
             "level": "error"
           }
         ],
-        "description": "Current status of the event",
+        "description": "Is this event upcoming or already done?",
         "name": "status",
         "type": "string",
         "title": "Event Status"
@@ -462,6 +432,112 @@
         "description": "Link to event page, tickets, or more information (optional)",
         "name": "externalLink",
         "type": "url"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "max",
+                "constraint": 10
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "description": "Upload photos (including HEIC) and videos (including MOV) from the event (max 10 items total). Great for showcasing past events!",
+        "of": [
+          {
+            "options": {
+              "hotspot": true,
+              "metadata": [
+                "blurhash",
+                "lqip",
+                "palette"
+              ],
+              "storeOriginalFilename": false,
+              "accept": "image/*,.heic,.HEIC"
+            },
+            "fields": [
+              {
+                "placeholder": "Photo from [event name]...",
+                "validation": [
+                  {
+                    "rules": [
+                      {
+                        "flag": "presence",
+                        "constraint": "required"
+                      }
+                    ],
+                    "level": "error"
+                  }
+                ],
+                "description": "Describe what this photo shows",
+                "name": "alt",
+                "type": "string",
+                "title": "Alt text (for accessibility)"
+              },
+              {
+                "description": "Optional caption to display with the photo",
+                "name": "caption",
+                "type": "string",
+                "title": "Caption (optional)"
+              }
+            ],
+            "type": "image",
+            "title": "Photo"
+          },
+          {
+            "options": {
+              "accept": "video/*,.mov,.MOV,.mp4,.MP4",
+              "storeOriginalFilename": false
+            },
+            "fields": [
+              {
+                "placeholder": "Video from [event name]...",
+                "validation": [
+                  {
+                    "rules": [
+                      {
+                        "flag": "presence",
+                        "constraint": "required"
+                      }
+                    ],
+                    "level": "error"
+                  }
+                ],
+                "description": "Describe what this video shows",
+                "name": "alt",
+                "type": "string",
+                "title": "Video description (for accessibility)"
+              },
+              {
+                "description": "Optional caption to display with the video",
+                "name": "caption",
+                "type": "string",
+                "title": "Video Caption (optional)"
+              },
+              {
+                "options": {
+                  "hotspot": true,
+                  "metadata": [
+                    "blurhash",
+                    "lqip"
+                  ]
+                },
+                "description": "Custom thumbnail for the video. If not provided, a default play icon will be used.",
+                "name": "thumbnail",
+                "type": "image",
+                "title": "Video Thumbnail (optional)"
+              }
+            ],
+            "type": "file",
+            "title": "Video"
+          }
+        ],
+        "name": "media",
+        "type": "array",
+        "title": "Event Photos & Videos"
       }
     ],
     "name": "event",

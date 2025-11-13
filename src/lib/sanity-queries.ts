@@ -128,27 +128,81 @@ export const getEvents = async () => {
       name,
       slug,
       date,
-      location,
       status,
       description,
       featured,
-      externalLink
+      externalLink,
+      media[] {
+        _type,
+        _key,
+        asset->{
+          _id,
+          url,
+          metadata {
+            dimensions,
+            lqip,
+            blurHash,
+            palette
+          }
+        },
+        alt,
+        caption,
+        thumbnail {
+          asset->{
+            _id,
+            url,
+            metadata {
+              dimensions,
+              lqip,
+              blurHash
+            }
+          },
+          alt
+        }
+      }
     }
   `)
 }
 
 export const getUpcomingEvents = async () => {
   return await sanityClient.fetch(`
-    *[_type == "event" && status in ["upcoming", "planned"] && date >= now()] | order(date asc) {
+    *[_type == "event" && status == "upcoming" && date >= now()] | order(date asc) {
       _id,
       name,
       slug,
       date,
-      location,
       status,
       description,
       featured,
-      externalLink
+      externalLink,
+      media[] {
+        _type,
+        _key,
+        asset->{
+          _id,
+          url,
+          metadata {
+            dimensions,
+            lqip,
+            blurHash,
+            palette
+          }
+        },
+        alt,
+        caption,
+        thumbnail {
+          asset->{
+            _id,
+            url,
+            metadata {
+              dimensions,
+              lqip,
+              blurHash
+            }
+          },
+          alt
+        }
+      }
     }
   `)
 }
@@ -176,11 +230,38 @@ export const getEventBySlug = async (slug: string) => {
       name,
       slug,
       date,
-      location,
       status,
       description,
       featured,
-      externalLink
+      externalLink,
+      media[] {
+        _type,
+        _key,
+        asset->{
+          _id,
+          url,
+          metadata {
+            dimensions,
+            lqip,
+            blurHash,
+            palette
+          }
+        },
+        alt,
+        caption,
+        thumbnail {
+          asset->{
+            _id,
+            url,
+            metadata {
+              dimensions,
+              lqip,
+              blurHash
+            }
+          },
+          alt
+        }
+      }
     }
   `, { slug })
 }
