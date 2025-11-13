@@ -5,6 +5,7 @@ import Image from 'next/image';
 import type { Artwork, Category } from '@/types';
 import { FilterControls } from './filter-controls';
 import { ImageLightbox } from './image-lightbox';
+import { ComicReader } from './comic-reader';
 import { Card, CardContent } from '@/components/ui/card';
 import { AnimatePresence, motion } from 'framer-motion';
 import { imagePresets, getBlurDataURL } from '@/lib/sanityImageUrl';
@@ -12,6 +13,7 @@ import { imagePresets, getBlurDataURL } from '@/lib/sanityImageUrl';
 export function ArtworkGrid({ artworks }: { artworks: Artwork[] }) {
   const [activeFilter, setActiveFilter] = useState<string>('All');
   const [selectedImage, setSelectedImage] = useState<Artwork | null>(null);
+  const [selectedComicSlug, setSelectedComicSlug] = useState<string | null>(null);
 
   // Memoize categories to prevent recalculation
   const categories = useMemo(() => 
@@ -52,8 +54,14 @@ export function ArtworkGrid({ artworks }: { artworks: Artwork[] }) {
                 className="mb-4 break-inside-avoid"
               >
                 <Card 
-                  className="overflow-hidden group cursor-pointer"
-                  onClick={() => setSelectedImage(art)}
+                  className={`overflow-hidden group cursor-pointer ${art.category?.name === 'Comics' ? 'comic-stack' : ''}`}
+                  onClick={() => {
+                    if (art.category?.name === 'Comics' && art.comic?.slug?.current) {
+                      setSelectedComicSlug(art.comic.slug.current);
+                    } else {
+                      setSelectedImage(art);
+                    }
+                  }}
                 >
                   <CardContent className="p-0">
                     <div className="relative">
@@ -107,6 +115,15 @@ export function ArtworkGrid({ artworks }: { artworks: Artwork[] }) {
         onOpenChange={(isOpen) => {
           if (!isOpen) {
             setSelectedImage(null);
+          }
+        }}
+      />
+
+      <ComicReader
+        comicSlug={selectedComicSlug}
+        onOpenChange={(isOpen) => {
+          if (!isOpen) {
+            setSelectedComicSlug(null);
           }
         }}
       />

@@ -49,6 +49,21 @@ export default defineType({
       rows: 3,
       description: 'Tell us about this artwork (optional)',
     }),
+    defineField({
+      name: 'comic',
+      title: 'Linked Comic (for Comics category)',
+      type: 'reference',
+      to: [{ type: 'comic' }],
+      description: 'If this is a comic cover, link it to the full comic',
+      hidden: ({ document }) => {
+        // Show comic field only when category is Comics
+        const category = document?.category as { _ref?: string } | undefined;
+        const categoryRef = category?._ref;
+        if (!categoryRef) return true;
+        // Check if the category reference contains 'comics'
+        return !categoryRef.toLowerCase().includes('comics');
+      },
+    }),
     // Auto-generated slug from title
     defineField({
       name: 'slug',

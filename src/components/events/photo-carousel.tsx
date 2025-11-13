@@ -162,7 +162,7 @@ export function PhotoCarousel({ media, eventName }: PhotoCarouselProps) {
 
       {/* Lightbox */}
       <Dialog open={isLightboxOpen} onOpenChange={setIsLightboxOpen}>
-        <DialogContent className="max-w-4xl w-full p-0 bg-black/95 border-0" hideCloseButton>
+        <DialogContent className="max-w-4xl w-full p-0 bg-black/95 border-0">
           <div className="relative">
             <Button
               variant="ghost"

@@ -25,13 +25,13 @@ function getEventBadgeProps(status: Event['status']) {
             return {
                 variant: 'default' as const,
                 className: 'bg-primary hover:bg-primary/90 text-primary-foreground',
-                emoji: '�'
+                emoji: '🔴'
             };
         case 'done':
             return {
                 variant: 'outline' as const,
                 className: 'bg-green-500/10 text-green-400 border-green-500/20 hover:bg-green-500/20',
-                emoji: '✅'
+                emoji: '🟢'
             };
         default:
             return {
@@ -49,9 +49,6 @@ export default async function EventsPage() {
         <div className="max-w-6xl mx-auto animate-fade-in">
             <div className="text-center mb-12">
                 <h1 className="text-4xl font-headline md:text-6xl text-center text-primary mb-4">EVENTS</h1>
-                <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-                    Some events I'm heading to
-                </p>
             </div>
 
             {events.length === 0 ? (
@@ -61,78 +58,167 @@ export default async function EventsPage() {
                     <p className="text-muted-foreground">Check back soon for upcoming events and exhibitions.</p>
                 </div>
             ) : (
-                <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-                    {events.map((event: Event) => {
-                        const badgeProps = getEventBadgeProps(event.status);
-                        const hasMedia = event.media && event.media.length > 0;
+                <>
+                    {/* Featured Events Section */}
+                    {events.some((event: Event) => event.featured) && (
+                        <div className="mb-16">
+                            <div className="text-center mb-8">
+                                <h2 className="text-2xl font-headline text-primary mb-2 flex items-center justify-center gap-2">
+                                    <Star className="w-6 h-6 fill-yellow-400 text-yellow-400" />
+                                    FEATURED EVENTS
+                                    <Star className="w-6 h-6 fill-yellow-400 text-yellow-400" />
+                                </h2>
+                            </div>
 
-                        return (
-                            <Card
-                                key={event._id}
-                                className={`flex flex-col hover:border-primary transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1 ${event.featured ? 'ring-2 ring-primary/20' : ''}`}
-                            >
-                                {/* Media carousel for events with photos/videos */}
-                                {hasMedia && (
-                                    <div className="p-4 pb-0">
-                                        <PhotoCarousel media={event.media} eventName={event.name} />
-                                    </div>
-                                )}
+                            <div className="flex justify-center">
+                                <div className="grid gap-8 max-w-4xl w-full" style={{ gridTemplateColumns: `repeat(${Math.min(events.filter((event: Event) => event.featured).length, 2)}, 1fr)` }}>
+                                    {events.filter((event: Event) => event.featured).map((event: Event) => {
+                                        const badgeProps = getEventBadgeProps(event.status);
+                                        const hasMedia = event.media && event.media.length > 0;
 
-                                <CardHeader className="flex-grow">
-                                    <div className="flex items-start justify-between">
-                                        <CardTitle className="font-headline text-xl flex items-center gap-2">
-                                            {event.name}
-                                            {event.featured && (
-                                                <span title="Featured Event">
-                                                    <Star className="w-4 h-4 fill-yellow-400 text-yellow-400" />
-                                                </span>
-                                            )}
-                                        </CardTitle>
-                                    </div>
-
-                                    <CardDescription className="pt-3 space-y-3">
-                                        <div className="flex items-center gap-2 text-sm">
-                                            <Calendar className="w-4 h-4 flex-shrink-0" />
-                                            <div className="font-medium">{formatEventDate(event.date)}</div>
-                                        </div>
-
-
-
-                                        {event.description && (
-                                            <p className="text-sm text-muted-foreground mt-3 line-clamp-3">
-                                                {event.description}
-                                            </p>
-                                        )}
-                                    </CardDescription>
-                                </CardHeader>
-
-                                <CardContent className="pt-0">
-                                    <div className="flex items-center justify-between">
-                                        <Badge
-                                            variant={badgeProps.variant}
-                                            className={badgeProps.className}
-                                        >
-                                            {badgeProps.emoji} {event.status.charAt(0).toUpperCase() + event.status.slice(1)}
-                                        </Badge>
-
-                                        {event.externalLink && (
-                                            <a
-                                                href={event.externalLink}
-                                                target="_blank"
-                                                rel="noopener noreferrer"
-                                                className="inline-flex items-center gap-1 text-sm text-primary hover:text-primary/80 transition-colors"
-                                                title="View event details"
+                                        return (
+                                            <Card
+                                                key={event._id}
+                                                className="flex flex-col hover:border-primary transition-all duration-300 shadow-xl hover:shadow-2xl transform hover:-translate-y-2 ring-2 ring-primary/30 hover:ring-primary/50 bg-gradient-to-br from-card to-card/80"
                                             >
-                                                <ExternalLink className="w-3 h-3" />
-                                                Details
-                                            </a>
-                                        )}
-                                    </div>
-                                </CardContent>
-                            </Card>
-                        );
-                    })}
-                </div>
+                                                {/* Media carousel for events with photos/videos */}
+                                                {hasMedia && (
+                                                    <div className="p-6 pb-0">
+                                                        <PhotoCarousel media={event.media} eventName={event.name} />
+                                                    </div>
+                                                )}
+
+                                                <CardHeader className="flex-grow p-6">
+                                                    <div className="flex items-start justify-between">
+                                                        <CardTitle className="font-headline text-2xl flex items-center gap-3 text-primary">
+                                                            <Star className="w-6 h-6 fill-yellow-400 text-yellow-400" />
+                                                            {event.name}
+                                                        </CardTitle>
+                                                    </div>
+
+                                                    <CardDescription className="pt-4 space-y-4">
+                                                        <div className="flex items-center gap-3 text-base">
+                                                            <Calendar className="w-5 h-5 flex-shrink-0 text-primary" />
+                                                            <div className="font-semibold text-foreground">{formatEventDate(event.date)}</div>
+                                                        </div>
+
+                                                        {event.description && (
+                                                            <p className="text-base text-muted-foreground leading-relaxed">
+                                                                {event.description}
+                                                            </p>
+                                                        )}
+                                                    </CardDescription>
+                                                </CardHeader>
+
+                                                <CardContent className="pt-0 p-6">
+                                                    <div className="flex items-center justify-between">
+                                                        <Badge
+                                                            variant={badgeProps.variant}
+                                                            className={`${badgeProps.className} text-base px-4 py-2`}
+                                                        >
+                                                            {badgeProps.emoji} {event.status.charAt(0).toUpperCase() + event.status.slice(1)}
+                                                        </Badge>
+
+                                                        {event.externalLink && (
+                                                            <a
+                                                                href={event.externalLink}
+                                                                target="_blank"
+                                                                rel="noopener noreferrer"
+                                                                className="inline-flex items-center gap-2 text-base text-primary hover:text-primary/80 transition-colors font-medium"
+                                                                title="View event details"
+                                                            >
+                                                                <ExternalLink className="w-4 h-4" />
+                                                                Details
+                                                            </a>
+                                                        )}
+                                                    </div>
+                                                </CardContent>
+                                            </Card>
+                                        );
+                                    })}
+                                </div>
+                            </div>
+                        </div>
+                    )}
+
+                    {/* Regular Events Section */}
+                    {events.some((event: Event) => !event.featured) && (
+                        <div>
+                            {events.some((event: Event) => event.featured) && (
+                                <div className="text-center mb-8">
+                                    <h2 className="text-xl font-headline text-muted-foreground mb-2">MORE EVENTS</h2>
+                                    <div className="w-24 h-px bg-border mx-auto"></div>
+                                </div>
+                            )}
+
+                            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+                                {events.filter((event: Event) => !event.featured).map((event: Event) => {
+                                    const badgeProps = getEventBadgeProps(event.status);
+                                    const hasMedia = event.media && event.media.length > 0;
+
+                                    return (
+                                        <Card
+                                            key={event._id}
+                                            className="flex flex-col hover:border-primary transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1"
+                                        >
+                                            {/* Media carousel for events with photos/videos */}
+                                            {hasMedia && (
+                                                <div className="p-4 pb-0">
+                                                    <PhotoCarousel media={event.media} eventName={event.name} />
+                                                </div>
+                                            )}
+
+                                            <CardHeader className="flex-grow">
+                                                <div className="flex items-start justify-between">
+                                                    <CardTitle className="font-headline text-xl">
+                                                        {event.name}
+                                                    </CardTitle>
+                                                </div>
+
+                                                <CardDescription className="pt-3 space-y-3">
+                                                    <div className="flex items-center gap-2 text-sm">
+                                                        <Calendar className="w-4 h-4 flex-shrink-0" />
+                                                        <div className="font-medium">{formatEventDate(event.date)}</div>
+                                                    </div>
+
+                                                    {event.description && (
+                                                        <p className="text-sm text-muted-foreground mt-3 line-clamp-3">
+                                                            {event.description}
+                                                        </p>
+                                                    )}
+                                                </CardDescription>
+                                            </CardHeader>
+
+                                            <CardContent className="pt-0">
+                                                <div className="flex items-center justify-between">
+                                                    <Badge
+                                                        variant={badgeProps.variant}
+                                                        className={badgeProps.className}
+                                                    >
+                                                        {badgeProps.emoji} {event.status.charAt(0).toUpperCase() + event.status.slice(1)}
+                                                    </Badge>
+
+                                                    {event.externalLink && (
+                                                        <a
+                                                            href={event.externalLink}
+                                                            target="_blank"
+                                                            rel="noopener noreferrer"
+                                                            className="inline-flex items-center gap-1 text-sm text-primary hover:text-primary/80 transition-colors"
+                                                            title="View event details"
+                                                        >
+                                                            <ExternalLink className="w-3 h-3" />
+                                                            Details
+                                                        </a>
+                                                    )}
+                                                </div>
+                                            </CardContent>
+                                        </Card>
+                                    );
+                                })}
+                            </div>
+                        </div>
+                    )}
+                </>
             )}
 
             {/* Call to action for artists/event organizers */}

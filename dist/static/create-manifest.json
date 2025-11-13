@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "createdAt": "2025-11-13T11:40:21.951Z",
+  "createdAt": "2025-11-13T14:29:24.211Z",
   "workspaces": [
     {
       "name": "beetlehead-designs",
@@ -12,7 +12,7 @@
       "mediaLibrary": {
         "enabled": false
       },
-      "schema": "04ef1f90.create-schema.json",
+      "schema": "5e65fb8f.create-schema.json",
       "tools": "6b09ad9d.create-tools.json"
     }
   ]

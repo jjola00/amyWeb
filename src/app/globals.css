@@ -56,6 +56,100 @@
     letter-spacing: 0.05em; /* Add spacing between letters */
     word-spacing: 0.1em;    /* Add spacing between words */
   }
+  
+  /* Custom scrollbar for about section */
+  .about-scroll {
+    scrollbar-width: thin;
+    scrollbar-color: hsl(var(--primary)) hsl(var(--muted));
+  }
+  
+  .about-scroll::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  .about-scroll::-webkit-scrollbar-track {
+    background: hsl(var(--muted));
+    border-radius: 4px;
+  }
+  
+  .about-scroll::-webkit-scrollbar-thumb {
+    background: hsl(var(--primary));
+    border-radius: 4px;
+    transition: background-color 0.2s ease;
+  }
+  
+  .about-scroll::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--primary) / 0.8);
+  }
+  
+  /* Comic stacked card effect */
+  .comic-stack {
+    position: relative;
+  }
+  
+  .comic-stack::before,
+  .comic-stack::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: hsl(var(--card));
+    border: 1px solid hsl(var(--border));
+    border-radius: calc(var(--radius) - 2px);
+    z-index: -1;
+    transition: transform 0.3s ease;
+  }
+  
+  .comic-stack::before {
+    transform: translate(4px, 4px) rotate(1deg);
+    opacity: 0.7;
+  }
+  
+  .comic-stack::after {
+    transform: translate(2px, 2px) rotate(-0.5deg);
+    opacity: 0.85;
+  }
+  
+  .comic-stack:hover::before {
+    transform: translate(6px, 6px) rotate(2deg);
+  }
+  
+  .comic-stack:hover::after {
+    transform: translate(3px, 3px) rotate(-1deg);
+  }
+  
+  /* Comic page transition animations */
+  .comic-page-enter {
+    animation: pageSlideIn 0.3s ease-out forwards;
+  }
+  
+  .comic-page-exit {
+    animation: pageSlideOut 0.3s ease-out forwards;
+  }
+  
+  @keyframes pageSlideIn {
+    from {
+      opacity: 0;
+      transform: translateX(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  
+  @keyframes pageSlideOut {
+    from {
+      opacity: 1;
+      transform: translateX(0);
+    }
+    to {
+      opacity: 0;
+      transform: translateX(-20px);
+    }
+  }
 }
 
 @keyframes fadeIn {

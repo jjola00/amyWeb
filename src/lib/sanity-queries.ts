@@ -25,6 +25,12 @@ export const getArtworks = async () => {
         _id,
         name,
         slug
+      },
+      comic->{
+        _id,
+        title,
+        slug,
+        pages
       }
     }
   `)
@@ -362,6 +368,67 @@ export const getShopItemBySlug = async (slug: string) => {
         },
         alt
       }
+    }
+  `, { slug })
+}
+
+// Comic queries
+export const getComics = async () => {
+  return await sanityClient.fetch(`
+    *[_type == "comic"] | order(title asc) {
+      _id,
+      title,
+      slug,
+      description,
+      pages[] {
+        pageNumber,
+        image {
+          asset->{
+            _id,
+            url,
+            metadata {
+              dimensions,
+              lqip,
+              blurHash,
+              palette
+            }
+          },
+          alt
+        },
+        caption
+      },
+      publishedDate,
+      featured
+    }
+  `)
+}
+
+export const getComicBySlug = async (slug: string) => {
+  return await sanityClient.fetch(`
+    *[_type == "comic" && slug.current == $slug][0] {
+      _id,
+      title,
+      slug,
+      description,
+      pages[] | order(pageNumber asc) {
+        pageNumber,
+        image {
+          asset->{
+            _id,
+            url,
+            metadata {
+              dimensions,
+              lqip,
+              blurHash,
+              palette
+            }
+          },
+          alt
+        },
+        caption
+      },
+      publishedDate,
+      featured
     }
   `, { slug })
 }

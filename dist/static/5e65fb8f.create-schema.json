@@ -93,6 +93,18 @@
         "title": "Description (Optional)"
       },
       {
+        "description": "If this is a comic cover, link it to the full comic",
+        "to": [
+          {
+            "type": "comic"
+          }
+        ],
+        "hidden": "conditional",
+        "name": "comic",
+        "type": "reference",
+        "title": "Linked Comic (for Comics category)"
+      },
+      {
         "options": {
           "source": "title",
           "maxLength": 96
@@ -782,5 +794,171 @@
     "name": "shopCategory",
     "type": "document",
     "title": "Shop Categories"
+  },
+  {
+    "fields": [
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "description": "Title of this comic (e.g., \"My Adventure Comic\", \"Comic1\")",
+        "name": "title",
+        "type": "string",
+        "title": "Comic Title"
+      },
+      {
+        "options": {
+          "source": "title",
+          "maxLength": 96
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "custom"
+              },
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "description": "Generate a slug from the comic title",
+        "name": "slug",
+        "type": "slug",
+        "title": "URL Slug"
+      },
+      {
+        "rows": 3,
+        "description": "Brief description of this comic (optional)",
+        "name": "description",
+        "type": "text",
+        "title": "Comic Description"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              },
+              {
+                "flag": "min",
+                "constraint": 1
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "description": "Upload the pages of your comic in order. You can drag to reorder them!",
+        "of": [
+          {
+            "fields": [
+              {
+                "validation": [
+                  {
+                    "rules": [
+                      {
+                        "flag": "presence",
+                        "constraint": "required"
+                      },
+                      {
+                        "flag": "min",
+                        "constraint": 0
+                      }
+                    ],
+                    "level": "error"
+                  }
+                ],
+                "description": "Order of this page (1, 2, 3, etc.) - you can reorder these!",
+                "name": "pageNumber",
+                "type": "number"
+              },
+              {
+                "options": {
+                  "hotspot": true,
+                  "metadata": [
+                    "blurhash",
+                    "lqip",
+                    "palette"
+                  ],
+                  "storeOriginalFilename": false
+                },
+                "validation": [
+                  {
+                    "rules": [
+                      {
+                        "flag": "presence",
+                        "constraint": "required"
+                      }
+                    ],
+                    "level": "error"
+                  }
+                ],
+                "fields": [
+                  {
+                    "placeholder": "Page showing...",
+                    "validation": [
+                      {
+                        "rules": [
+                          {
+                            "flag": "presence",
+                            "constraint": "required"
+                          }
+                        ],
+                        "level": "error"
+                      }
+                    ],
+                    "description": "Describe what happens on this page",
+                    "name": "alt",
+                    "type": "string",
+                    "title": "Alt text"
+                  }
+                ],
+                "name": "image",
+                "type": "image",
+                "title": "Page Image"
+              },
+              {
+                "description": "Optional caption or note for this page",
+                "name": "caption",
+                "type": "string",
+                "title": "Page Caption (Optional)"
+              }
+            ],
+            "type": "object",
+            "name": "comicPage"
+          }
+        ],
+        "name": "pages",
+        "type": "array",
+        "title": "Comic Pages"
+      },
+      {
+        "description": "When was this comic created? (optional)",
+        "name": "publishedDate",
+        "type": "date"
+      },
+      {
+        "initialValue": false,
+        "description": "Highlight this comic on the gallery page",
+        "name": "featured",
+        "type": "boolean",
+        "title": "Featured Comic"
+      }
+    ],
+    "name": "comic",
+    "type": "document"
   }
 ]

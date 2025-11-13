@@ -8,6 +8,7 @@ import about from './sanity/schemas/about'
 import event from './sanity/schemas/event'
 import shopItem from './sanity/schemas/shopItem'
 import shopCategory from './sanity/schemas/shopCategory'
+import comic from './sanity/schemas/comic'
 
 const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || '67ufanvv'
 const dataset = process.env.NEXT_PUBLIC_SANITY_DATASET || 'production'
@@ -67,16 +68,27 @@ export default defineConfig({
             
             S.divider(),
             
+            // Comics Section
+            S.listItem()
+              .title('📖 Comics')
+              .child(
+                S.documentTypeList('comic')
+                  .title('Comics')
+                  .defaultOrdering([{ field: 'title', direction: 'asc' }])
+              ),
+            
+            S.divider(),
+            
             // Art Categories
             S.listItem()
-              .title('� Art Categories')
+              .title('🏷️ Art Categories')
               .child(S.documentTypeList('category')),
           ]),
     })
   ],
   
   schema: {
-    types: [artwork, category, about, event, shopItem, shopCategory],
+    types: [artwork, category, about, event, shopItem, shopCategory, comic],
   },
   
   // 🔒 SECURITY: Studio authentication is handled by Sanity's built-in system

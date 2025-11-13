@@ -73,6 +73,7 @@ export interface Artwork {
     alt: string
   }
   category?: Category
+  comic?: Comic // Reference to full comic if this is a comic cover
 }
 
 export interface Event {
@@ -290,6 +291,38 @@ export interface ShopItem {
   imageHint: string
   store: 'Etsy'
   etsyUrl?: string
+}
+
+// Comic types
+export interface ComicPage {
+  pageNumber: number
+  image: {
+    asset: {
+      _id: string
+      url: string
+      metadata?: {
+        dimensions?: {
+          width: number
+          height: number
+        }
+        lqip?: string
+        blurHash?: string
+        palette?: any
+      }
+    }
+    alt: string
+  }
+  caption?: string
+}
+
+export interface Comic {
+  _id: string
+  title: string
+  slug: SanitySlug
+  description?: string
+  pages: ComicPage[]
+  publishedDate?: string
+  featured: boolean
 }
 
 // Export the categories array for use in components

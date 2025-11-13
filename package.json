@@ -9,6 +9,7 @@
     "start": "next start",
     "lint": "next lint",
     "typecheck": "tsc --noEmit",
+    "check": "npm run typecheck && npm run lint",
     "audit:performance": "npm run build && npm run start & sleep 5 && curl -s http://localhost:3000 > /dev/null && echo 'Performance audit complete'"
   },
   "dependencies": {
