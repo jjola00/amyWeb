@@ -36,7 +36,7 @@ A modern, full-featured portfolio website built with Next.js 15, featuring a dyn
 
 1. Clone the repository
 ```bash
-git clone <repository-url>](https://github.com/jjola00/amyWeb.git
+https://github.com/jjola00/amyWeb.git
 cd amyWeb
 ```
 
