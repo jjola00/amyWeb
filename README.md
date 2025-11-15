@@ -36,8 +36,8 @@ A modern, full-featured portfolio website built with Next.js 15, featuring a dyn
 
 1. Clone the repository
 ```bash
-git clone <repository-url>
-cd nextn
+git clone https://github.com/jjola00/amyWeb.git
+cd amyWeb
 ```
 
 2. Install dependencies
