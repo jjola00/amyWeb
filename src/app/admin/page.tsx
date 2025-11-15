@@ -23,7 +23,7 @@ export default function AdminPage() {
 
           <h1 className="text-3xl font-bold text-white mb-2">Content Management</h1>
           <p className="text-gray-300 mb-8">
-            Access your studio to manage artworks, update your about page, and organize your portfolio.
+            The admin page. If you are not Beetlehead TURN BACK AT ONCE.
           </p>
           
           {/* Studio Access Button */}
@@ -38,44 +38,6 @@ export default function AdminPage() {
             </svg>
             Open Content Studio
           </a>
-          
-          <div className="text-sm text-gray-400 space-y-2">
-            <div className="flex items-center gap-2 justify-center">
-              <svg className="w-4 h-4 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-              </svg>
-              <span>Secure access with your Sanity account</span>
-            </div>
-            <div className="flex items-center gap-2 justify-center">
-              <svg className="w-4 h-4 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-              </svg>
-              <span>Only authorized users can edit content</span>
-            </div>
-          </div>
-
-          {/* Quick Actions */}
-          <div className="mt-8 pt-6 border-t border-gray-700">
-            <h3 className="text-white font-semibold mb-4">What you can do:</h3>
-            <div className="grid grid-cols-2 gap-3 text-xs">
-              <div className="bg-gray-800/50 rounded-lg p-3">
-                <div className="text-purple-400 font-semibold">🎨 Artworks</div>
-                <div className="text-gray-400">Upload & organize</div>
-              </div>
-              <div className="bg-gray-800/50 rounded-lg p-3">
-                <div className="text-purple-400 font-semibold">📝 About Page</div>
-                <div className="text-gray-400">Update bio & info</div>
-              </div>
-              <div className="bg-gray-800/50 rounded-lg p-3">
-                <div className="text-purple-400 font-semibold">🏷️ Categories</div>
-                <div className="text-gray-400">Manage art types</div>
-              </div>
-              <div className="bg-gray-800/50 rounded-lg p-3">
-                <div className="text-purple-400 font-semibold">📱 Live Updates</div>
-                <div className="text-gray-400">Instant publishing</div>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
     </div>
