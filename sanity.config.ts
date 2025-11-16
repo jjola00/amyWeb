@@ -1,6 +1,7 @@
 import { defineConfig } from 'sanity'
 import { deskTool } from 'sanity/desk'
 import { useEffect } from 'react'
+import { DeployButton } from './sanity/components/DeployButton'
 
 // Import schemas
 import artwork from './sanity/schemas/artwork'
@@ -26,6 +27,16 @@ export default defineConfig({
         S.list()
           .title('Content')
           .items([
+            // Deploy Website Button
+            S.listItem()
+              .title('🚀 Deploy Website')
+              .child(
+                S.component(DeployButton)
+                  .title('Deploy Website')
+              ),
+            
+            S.divider(),
+            
             // About Page (singleton)
             S.listItem()
               .title('📄 About Page')
