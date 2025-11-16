@@ -1,5 +1,5 @@
-import { getShopItems, getShopCategories } from './sanity-queries'
-import type { SanityShopItem, SanityShopCategory, ShopItem } from '@/types'
+import { getShopItems } from './sanity-queries'
+import type { SanityShopItem, ShopItem } from '@/types'
 import { urlFor } from './sanityImageUrl'
 
 // Convert Sanity shop item to legacy format for backwards compatibility
@@ -30,16 +30,7 @@ export async function getSanityShopItems(): Promise<SanityShopItem[]> {
   }
 }
 
-// Get shop categories from Sanity CMS
-export async function getSanityShopCategories(): Promise<SanityShopCategory[]> {
-  try {
-    const categories = await getShopCategories()
-    return categories
-  } catch (error) {
-    console.error('Error fetching shop categories from Sanity:', error)
-    return []
-  }
-}
+
 
 // Get shop items in legacy format for existing components
 export async function getShopItemsLegacyFormat(): Promise<ShopItem[]> {

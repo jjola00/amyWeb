@@ -323,30 +323,7 @@ export const getShopItemsByCategory = async (categorySlug: string) => {
   `)
 }
 
-export const getShopCategories = async () => {
-  return await sanityClient.fetch(`
-    *[_type == "shopCategory" && isActive == true] | order(sortOrder asc, name asc) {
-      _id,
-      name,
-      slug,
-      description,
-      sortOrder,
-      image {
-        asset->{
-          _id,
-          url,
-          metadata {
-            dimensions,
-            lqip,
-            blurHash,
-            palette
-          }
-        },
-        alt
-      }
-    }
-  `)
-}
+
 
 export const getShopItemBySlug = async (slug: string) => {
   return await sanityClient.fetch(`

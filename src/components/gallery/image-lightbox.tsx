@@ -14,33 +14,36 @@ interface ImageLightboxProps {
 export function ImageLightbox({ artwork, onOpenChange }: ImageLightboxProps) {
   return (
     <Dialog open={!!artwork} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-4xl p-0">
+      <DialogContent className="max-w-7xl w-[95vw] h-[90vh] p-0">
         {artwork && (
-          <div className="grid md:grid-cols-2">
-            <div className="relative min-h-[50vh] md:min-h-0">
+          <div className="relative w-full h-full flex flex-col md:flex-row">
+            {/* Image container - takes most of the space */}
+            <div className="relative flex-1 min-h-[60vh] md:min-h-full">
               <Image
                 src={imagePresets.fullsize(artwork.image).url()}
                 alt={artwork.image.alt}
                 fill
-                className="object-contain rounded-t-lg md:rounded-l-lg md:rounded-t-none"
+                className="object-contain p-4"
                 placeholder={getBlurDataURL(artwork.image) ? "blur" : "empty"}
                 blurDataURL={getBlurDataURL(artwork.image)}
-                sizes="(max-width: 768px) 100vw, 50vw"
+                sizes="(max-width: 768px) 95vw, 1200px"
+                priority
               />
             </div>
-            <div className="p-6 flex flex-col">
+            
+            {/* Info panel - overlay on mobile, sidebar on desktop */}
+            <div className="absolute bottom-0 left-0 right-0 md:relative md:max-w-sm bg-background/95 backdrop-blur-sm p-6 flex flex-col border-t md:border-t-0 md:border-l">
               <DialogHeader>
-                <DialogTitle className="font-headline text-3xl mb-2 text-primary">{artwork.title}</DialogTitle>
-                <DialogDescription className="text-base text-muted-foreground">{artwork.description}</DialogDescription>
+                <DialogTitle className="font-headline text-2xl md:text-3xl mb-2 text-primary">{artwork.title}</DialogTitle>
+                {artwork.description && (
+                  <DialogDescription className="text-sm md:text-base text-muted-foreground">
+                    {artwork.description}
+                  </DialogDescription>
+                )}
               </DialogHeader>
               <div className="mt-4 space-y-2">
                 {artwork.category && (
                   <Badge variant="secondary">{artwork.category.name}</Badge>
-                )}
-                {artwork.description && (
-                  <div className="text-sm text-muted-foreground">
-                    <p>{artwork.description}</p>
-                  </div>
                 )}
               </div>
             </div>

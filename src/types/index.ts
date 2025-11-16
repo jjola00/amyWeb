@@ -229,30 +229,6 @@ export interface SiteSettings {
 }
 
 // Shop types for Sanity CMS integration
-export interface SanityShopCategory {
-  _id: string
-  name: string
-  slug: SanitySlug
-  description?: string
-  sortOrder: number
-  image?: {
-    asset: {
-      _id: string
-      url: string
-      metadata?: {
-        dimensions?: {
-          width: number
-          height: number
-        }
-        lqip?: string
-        blurHash?: string
-        palette?: any
-      }
-    }
-    alt: string
-  }
-}
-
 export interface SanityShopItem {
   _id: string
   name: string
@@ -278,7 +254,6 @@ export interface SanityShopItem {
     }
     alt: string
   }
-  category?: SanityShopCategory
 }
 
 // Legacy types (for backwards compatibility during migration)

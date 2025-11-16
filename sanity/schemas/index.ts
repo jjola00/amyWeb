@@ -1,8 +1,8 @@
 import artwork from './artwork'
 import category from './category'
+import comic from './comic'
 import about from './about'
 import event from './event'
 import shopItem from './shopItem'
-import shopCategory from './shopCategory'
 
-export const schemaTypes = [artwork, category, about, event, shopItem, shopCategory]
+export const schemaTypes = [artwork, category, comic, about, event, shopItem]

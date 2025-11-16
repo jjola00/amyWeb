@@ -39,8 +39,12 @@ export default defineType({
       title: 'Tag/Category',
       type: 'reference',
       to: [{ type: 'category' }],
+      weak: true,
       validation: (Rule) => Rule.required(),
-      description: 'What type of art is this? (Mascot, Comic, etc.)',
+      description: 'Select existing or create new category inline',
+      options: {
+        disableNew: false,
+      },
     }),
     defineField({
       name: 'description',
@@ -54,6 +58,7 @@ export default defineType({
       title: 'Linked Comic (for Comics category)',
       type: 'reference',
       to: [{ type: 'comic' }],
+      weak: true,
       description: 'If this is a comic cover, link it to the full comic',
       hidden: ({ document }) => {
         // Show comic field only when category is Comics

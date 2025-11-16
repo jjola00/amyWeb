@@ -25,7 +25,7 @@ export const imagePresets = {
 
   // Lightbox/full view - high quality for viewing (no height restriction)
   fullsize: (source: any) => urlFor(source)
-    .width(1200)
+    .width(1600)
     .auto('format')
     .quality(90),
 

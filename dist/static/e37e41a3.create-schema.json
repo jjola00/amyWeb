@@ -64,6 +64,10 @@
         "title": "Upload Image"
       },
       {
+        "weak": true,
+        "options": {
+          "disableNew": false
+        },
         "validation": [
           {
             "rules": [
@@ -75,7 +79,7 @@
             "level": "error"
           }
         ],
-        "description": "What type of art is this? (Mascot, Comic, etc.)",
+        "description": "Select existing or create new category inline",
         "to": [
           {
             "type": "category"
@@ -93,6 +97,7 @@
         "title": "Description (Optional)"
       },
       {
+        "weak": true,
         "description": "If this is a comic cover, link it to the full comic",
         "to": [
           {
@@ -133,56 +138,21 @@
     "type": "document"
   },
   {
+    "validation": [
+      {
+        "rules": [
+          {
+            "flag": "custom"
+          }
+        ],
+        "level": "error"
+      }
+    ],
     "fields": [
       {
-        "options": {
-          "list": [
-            {
-              "title": "Digital Fanart",
-              "value": "Digital Fanart"
-            },
-            {
-              "title": "Digital Original Art",
-              "value": "Digital Original Art"
-            },
-            {
-              "title": "Traditional Original Art",
-              "value": "Traditional Original Art"
-            },
-            {
-              "title": "Mascot",
-              "value": "Mascot"
-            },
-            {
-              "title": "Commissions",
-              "value": "Commissions"
-            },
-            {
-              "title": "Sketches",
-              "value": "Sketches"
-            },
-            {
-              "title": "Comics",
-              "value": "Comics"
-            }
-          ],
-          "layout": "dropdown"
-        },
         "validation": [
           {
             "rules": [
-              {
-                "flag": "valid",
-                "constraint": [
-                  "Digital Fanart",
-                  "Digital Original Art",
-                  "Traditional Original Art",
-                  "Mascot",
-                  "Commissions",
-                  "Sketches",
-                  "Comics"
-                ]
-              },
               {
                 "flag": "presence",
                 "constraint": "required"
@@ -191,7 +161,7 @@
             "level": "error"
           }
         ],
-        "description": "Select from existing or type to add a new category",
+        "description": "Type any category name you want",
         "name": "name",
         "type": "string",
         "title": "Category Name"
@@ -672,128 +642,6 @@
     ],
     "name": "shopItem",
     "type": "document"
-  },
-  {
-    "fields": [
-      {
-        "options": {
-          "list": [
-            {
-              "title": "Digital Art",
-              "value": "Digital Art"
-            },
-            {
-              "title": "Keychains",
-              "value": "Keychains"
-            },
-            {
-              "title": "Art Prints",
-              "value": "Art Prints"
-            },
-            {
-              "title": "Enamel Pins",
-              "value": "Enamel Pins"
-            }
-          ],
-          "layout": "dropdown"
-        },
-        "validation": [
-          {
-            "rules": [
-              {
-                "flag": "valid",
-                "constraint": [
-                  "Digital Art",
-                  "Keychains",
-                  "Art Prints",
-                  "Enamel Pins"
-                ]
-              },
-              {
-                "flag": "presence",
-                "constraint": "required"
-              }
-            ],
-            "level": "error"
-          }
-        ],
-        "description": "Select from existing or type to add a new shop category",
-        "name": "name",
-        "type": "string",
-        "title": "Category Name"
-      },
-      {
-        "options": {
-          "source": "name",
-          "maxLength": 96
-        },
-        "validation": [
-          {
-            "rules": [
-              {
-                "flag": "custom"
-              },
-              {
-                "flag": "presence",
-                "constraint": "required"
-              }
-            ],
-            "level": "error"
-          }
-        ],
-        "description": "Click generate to create the URL slug from the name",
-        "name": "slug",
-        "type": "slug",
-        "title": "URL Slug"
-      },
-      {
-        "rows": 3,
-        "placeholder": "e.g., Physical keychains and charms, Digital artwork downloads, etc.",
-        "description": "What type of items go in this category?",
-        "name": "description",
-        "type": "text"
-      },
-      {
-        "options": {
-          "hotspot": true,
-          "metadata": [
-            "blurhash",
-            "lqip",
-            "palette"
-          ],
-          "storeOriginalFilename": false
-        },
-        "description": "Optional image to represent this category",
-        "fields": [
-          {
-            "placeholder": "Category image description...",
-            "description": "Briefly describe this category image",
-            "name": "alt",
-            "type": "string",
-            "title": "Alt text (for accessibility)"
-          }
-        ],
-        "name": "image",
-        "type": "image",
-        "title": "Category Image (Optional)"
-      },
-      {
-        "initialValue": 0,
-        "description": "Lower numbers appear first in category lists",
-        "name": "sortOrder",
-        "type": "number"
-      },
-      {
-        "initialValue": true,
-        "description": "Turn this off to hide the category (and its items) from your website",
-        "name": "isActive",
-        "type": "boolean",
-        "title": "Active Category"
-      }
-    ],
-    "name": "shopCategory",
-    "type": "document",
-    "title": "Shop Categories"
   },
   {
     "fields": [
