@@ -55,7 +55,7 @@ export function ContactForm() {
           <Mail className="mx-auto h-8 w-8 text-green-600 dark:text-green-400 mb-2" />
           <h3 className="text-green-800 dark:text-green-200 font-medium text-lg">Message Sent!</h3>
           <p className="text-green-700 dark:text-green-300 text-sm mt-1">
-            Thanks for reaching out. I'll get back to you soon!
+            Thanks for reaching out. I&apos;ll get back to you soon!
           </p>
         </div>
       </div>

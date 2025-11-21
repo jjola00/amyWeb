@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import Image from 'next/image';
 import { ChevronLeft, ChevronRight, X, BookOpen } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -39,17 +39,17 @@ export function ComicReader({ comicSlug, onOpenChange }: ComicReaderProps) {
     }
   }, [comicSlug]);
 
-  const nextPage = () => {
+  const nextPage = useCallback(() => {
     if (comic && currentPage < comic.pages.length - 1) {
       setCurrentPage(prev => prev + 1);
     }
-  };
+  }, [comic, currentPage]);
 
-  const prevPage = () => {
+  const prevPage = useCallback(() => {
     if (currentPage > 0) {
       setCurrentPage(prev => prev - 1);
     }
-  };
+  }, [currentPage]);
 
   const goToPage = (pageIndex: number) => {
     setCurrentPage(pageIndex);
@@ -75,7 +75,7 @@ export function ComicReader({ comicSlug, onOpenChange }: ComicReaderProps) {
       window.addEventListener('keydown', handleKeyPress);
       return () => window.removeEventListener('keydown', handleKeyPress);
     }
-  }, [comic, currentPage, comicSlug, onOpenChange]);
+  }, [comic, currentPage, comicSlug, onOpenChange, nextPage, prevPage]);
 
   if (!comicSlug) return null;
 
