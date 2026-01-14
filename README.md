@@ -2,6 +2,10 @@
 
 A modern, full-featured portfolio website built with Next.js 15, featuring a dynamic gallery, comic reader, event management, and integrated shop functionality.
 
+## Live Site
+
+https://beetlehead-designs.vercel.app/
+
 ## Features
 
 - **Dynamic Gallery** - Filterable artwork gallery with categories and lightbox viewing
