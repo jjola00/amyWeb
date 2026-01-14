@@ -44,6 +44,8 @@ function getEventBadgeProps(status: Event['status']) {
 
 export default async function EventsPage() {
     const events = await getEvents();
+    const featuredEvents = events.filter((event: Event) => event.featured);
+    const regularEvents = events.filter((event: Event) => !event.featured);
 
     return (
         <div className="max-w-6xl mx-auto animate-fade-in">
@@ -60,7 +62,7 @@ export default async function EventsPage() {
             ) : (
                 <>
                     {/* Featured Events Section */}
-                    {events.some((event: Event) => event.featured) && (
+                    {featuredEvents.length > 0 && (
                         <div className="mb-16">
                             <div className="text-center mb-8">
                                 <h2 className="text-2xl font-headline text-primary mb-2 flex items-center justify-center gap-2">
@@ -71,15 +73,20 @@ export default async function EventsPage() {
                             </div>
 
                             <div className="flex justify-center">
-                                <div className="grid gap-8 max-w-4xl w-full" style={{ gridTemplateColumns: `repeat(${Math.min(events.filter((event: Event) => event.featured).length, 2)}, 1fr)` }}>
-                                    {events.filter((event: Event) => event.featured).map((event: Event) => {
+                                <div className="w-full max-w-5xl">
+                                    <div
+                                        className={`flex gap-6 overflow-x-auto pb-4 -mx-4 px-4 snap-x snap-mandatory lg:mx-0 lg:px-0 lg:overflow-visible lg:pb-0 lg:grid lg:gap-8 lg:snap-none ${
+                                            featuredEvents.length > 1 ? "lg:grid-cols-2" : "lg:grid-cols-1"
+                                        }`}
+                                    >
+                                        {featuredEvents.map((event: Event) => {
                                         const badgeProps = getEventBadgeProps(event.status);
                                         const hasMedia = event.media && event.media.length > 0;
 
                                         return (
                                             <Card
                                                 key={event._id}
-                                                className="flex flex-col hover:border-primary transition-all duration-300 shadow-xl hover:shadow-2xl transform hover:-translate-y-2 ring-2 ring-primary/30 hover:ring-primary/50 bg-gradient-to-br from-card to-card/80"
+                                                className="flex flex-col snap-start shrink-0 w-[85%] sm:w-[70%] md:w-[60%] lg:w-full hover:border-primary transition-all duration-300 shadow-xl hover:shadow-2xl transform hover:-translate-y-2 ring-2 ring-primary/30 hover:ring-primary/50 bg-gradient-to-br from-card to-card/80"
                                             >
                                                 {/* Media carousel for events with photos/videos */}
                                                 {hasMedia && (
@@ -136,15 +143,16 @@ export default async function EventsPage() {
                                             </Card>
                                         );
                                     })}
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     )}
 
                     {/* Regular Events Section */}
-                    {events.some((event: Event) => !event.featured) && (
+                    {regularEvents.length > 0 && (
                         <div>
-                            {events.some((event: Event) => event.featured) && (
+                            {featuredEvents.length > 0 && (
                                 <div className="text-center mb-8">
                                     <h2 className="text-xl font-headline text-muted-foreground mb-2">MORE EVENTS</h2>
                                     <div className="w-24 h-px bg-border mx-auto"></div>
@@ -152,7 +160,7 @@ export default async function EventsPage() {
                             )}
 
                             <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-                                {events.filter((event: Event) => !event.featured).map((event: Event) => {
+                                {regularEvents.map((event: Event) => {
                                     const badgeProps = getEventBadgeProps(event.status);
                                     const hasMedia = event.media && event.media.length > 0;
 
